@@ -1,2 +1,2 @@
-# CS-246-Final-Project
+# CS-final-chess
 Chess Game 
