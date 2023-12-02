@@ -19,7 +19,7 @@ class Player {
                 int getColour();
                 void incScore();
                 int getTotalPieces();
-
+                vector<Pieces*> getPieces();
 };
 
 #endif
