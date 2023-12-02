@@ -1,5 +1,5 @@
 #include <vector>
-
+#include "Coordinate.h"
 
 using namespace std;
 
@@ -9,29 +9,29 @@ Public:
     Board();
 };
 
-class Coordinates {
+class Coordinate {
 public:
     int x;
     int y;
     
-    Coordinates();
-    Coordinates(int x, int y);
+    Coordinate();
+    Coordinate(int x, int y);
 };
 
 enum Colour {Black, White};
 
 class Piece {
-    Coordinates coords;
+    Coordinate coords;
     Colour colour;
     int numMoves;
     Board curBoard;
 
 public:
-    Piece(Coordinates c, Colour colour, Board b);
+    Piece(Coordinate c, Colour colour, Board b);
 
-    virtual vector<Coordinates> possibleMoves(const Board& b, const Piece& p, const Coordinates& c); // Returns a vector of availble moves
+    virtual vector<Coordinate> possibleMoves(const Board& b, const Piece& p, const Coordinate& c); // Returns a vector of availble moves
 
-    virtual void move(const Coordinates& c, const Board& b); // Moves the current piece and throws an exception if the move is illegal
+    virtual void move(const Coordinate& c, const Board& b); // Moves the current piece and throws an exception if the move is illegal
 
     void getNumMoves(); // Returns numMoves
 
@@ -39,7 +39,7 @@ public:
 
     void getCoords(); // Returns coords
 
-    bool isLegal(const Coordinates& c); // Checks if a move is legal
+    bool isLegal(const Coordinate& c); // Checks if a move is legal
     
     virtual ~Piece() = 0;
 };

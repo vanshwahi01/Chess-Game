@@ -3,11 +3,11 @@
 
 using namespace std;
 
-Piece::Piece(Coordinates c, Colour colour, Board b) : coords{c}, colour{colour}, curBoard{b}, numMoves{0} {}
+Piece::Piece(Coordinate c, Colour colour, Board b) : coords{c}, colour{colour}, curBoard{b}, numMoves{0} {}
 
-vector<Coordinates> Piece::possibleMoves(const Board& b, const Piece& p, const Coordinates& c) {}
+vector<Coordinate> Piece::possibleMoves(const Board& b, const Piece& p, const Coordinate& c) {}
 
-void Piece::move(const Coordinates& c, const Board& b) {
+void Piece::move(const Coordinate& c, const Board& b) {
 
 }
 
@@ -25,7 +25,7 @@ void Piece::getCoords() {
     return coords;
 }
 
-bool Piece::isLegal(const Coordinates& c) {
+bool Piece::isLegal(const Coordinate& c) {
     for(auto p: possibleMoves(curBoard, *this, this->getCoords())) { // Checks to see if c is a legal move
         if(p == c) return true;
     }
@@ -34,11 +34,11 @@ bool Piece::isLegal(const Coordinates& c) {
 
 Board::Board() : x{0} {}
 
-Coordinates::Coordinates() : x{0}, y{0} {}
+Coordinate::Coordinate() : x{0}, y{0} {}
 
-Coordinates::Coordinates(int x, int y) : x{x}, y{y} {}
+Coordinate::Coordinate(int x, int y) : x{x}, y{y} {}
 
-bool Coordinates::operator==(const Coordinates& other) {
+bool Coordinate::operator==(const Coordinate& other) {
     if(this->x == other.x && this->y == other.y) return true;
     return false;
 }
