@@ -4,7 +4,8 @@
 #include <vector>
 using namespace std;
 
-enum Colour {White = 0, Black = 1};
+//in Sahib's piece.h
+//enum Colour {White = 0, Black = 1};
 
 class Player {
         vector<Pieces*> (16);
