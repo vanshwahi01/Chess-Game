@@ -3,10 +3,14 @@
 
 using namespace std;
 
-Pawn::Pawn(Coordinate c, Colour colour, Board b) : Piece{c, colour, b} {}
+Pawn::Pawn(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour, b, type} {}
 
 void Pawn::promote(const Board& b, Piece& p) {
+    Coordinate = p.getCoords();
 
+    for(auto i: b->pieces) {
+        if(i.getCoords() == p.getCoords()) 
+    }
 }
 
 vector<Coordinate> Pawn::possibleMoves(const Board& b, const Piece& p, const Coordinate& c) {
@@ -14,13 +18,14 @@ vector<Coordinate> Pawn::possibleMoves(const Board& b, const Piece& p, const Coo
     if(!b->getPiece({c->x, c->y + 1})->isOccupied()) { // Check if the pawn can move forward
         pMoves.push_back({c->x, c->y + 1});
     }
-    if(b->getPiece({c->x - 1, c->y + 1})->isOccupied()) { // Check if left diagnol is occupied
+
+    if(c->x > 0 && b->getPiece({c->x - 1, c->y + 1})->isOccupied()) { // Check if left diagnol is occupied
         if(b->getPiece({c->x - 1, c->y + 1})->colour != p->colour) { // Check if it is opposing team's piece
             pMoves.push_back({c->x - 1, c->y + 1});
         }
     }
 
-    if(b->getPiece({c->x + 1, c->y + 1})->isOccupied()) { // Check if right diagnol is occupied
+    if(c->x < board.length - 1 && b->getPiece({c->x + 1, c->y + 1})->isOccupied()) { // Check if right diagnol is occupied
         if(b->getPiece({c->x + 1, c->y + 1})->colour != p->colour) { // Check if it is opposing team's piece
             pMoves.push_back({c->x + 1, c->y + 1});
         }

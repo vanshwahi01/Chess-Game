@@ -25,19 +25,22 @@ class Piece {
     Colour colour;
     int numMoves;
     Board curBoard;
+    string type;
 
 public:
-    Piece(Coordinate c, Colour colour, Board b);
+    Piece(Coordinate c, Colour colour, Board b, string type);
 
     virtual vector<Coordinate> possibleMoves(const Board& b, const Piece& p, const Coordinate& c); // Returns a vector of availble moves
 
     virtual void move(const Coordinate& c, const Board& b); // Moves the current piece and throws an exception if the move is illegal
 
-    void getNumMoves(); // Returns numMoves
+    int getNumMoves(); // Returns numMoves
 
-    void getColour(); // Returns colour
+    Colour getColour(); // Returns colour
 
-    void getCoords(); // Returns coords
+    Coordinate getCoords(); // Returns coords
+
+    string getType(); 
 
     bool isLegal(const Coordinate& c); // Checks if a move is legal
     

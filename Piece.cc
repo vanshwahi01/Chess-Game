@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Piece::Piece(Coordinate c, Colour colour, Board b) : coords{c}, colour{colour}, curBoard{b}, numMoves{0} {}
+Piece::Piece(Coordinate c, Colour colour, Board b, string type) : coords{c}, colour{colour}, curBoard{b}, type{type} numMoves{0} {}
 
 vector<Coordinate> Piece::possibleMoves(const Board& b, const Piece& p, const Coordinate& c) {}
 
@@ -13,16 +13,20 @@ void Piece::move(const Coordinate& c, const Board& b) {
 
 Piece::~Piece() {}
 
-void Piece::getNumMoves() {
+int Piece::getNumMoves() {
     return numMoves;
 }
 
-void Piece::getColour() {
+Colour Piece::getColour() {
     return colour;
 }
 
-void Piece::getCoords() {
+Coordinate Piece::getCoords() {
     return coords;
+}
+
+string Piece::getType() {
+    return type;
 }
 
 bool Piece::isLegal(const Coordinate& c) {
