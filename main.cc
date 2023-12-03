@@ -270,23 +270,21 @@ int main() {
                         string black-player;
                         cin << white-player << black-player;
                         if(white-player == "human") {
-                                Player* p1;
+                                Player* p1{Colour::White};
                         } else {
-                                Computer* p1;
                                 istringstream iss{white-player};
                                 char level;
                                 for(int i = 0; i < 10; i++){iss >> level;}
-                                int p1.level = level - '0';
+                                Computer* p1{Colour::White, level - '0'};
 
                         }
                         if(black-player == "human") {
-                                Player* p2;
+                                Player* p2{Colour::Black};
                         } else {
-                                Computer* p2;
                                 istringstream iss{black-player};
                                 char level;
                                 for(int i = 0; i < 10; i++){iss >> level;}
-                                int p2.level = level - '0';
+                                Computer* p2{Colour::Black, level - '0'};
 
                         }
                         gameStarted = true;
@@ -321,7 +319,8 @@ int main() {
                                                 break;
                                         }
                                         if(there's a stalemate){
-                                                increment both scores by 0.5
+                                                p1->draw();
+                                                p2->draw();
                                                 break;
                                         }
                                 }
