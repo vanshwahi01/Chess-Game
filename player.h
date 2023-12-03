@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-#include pieces.h
-#include <vector>
+#include "pieces.h"
+
 using namespace std;
 
 //in Sahib's piece.h
