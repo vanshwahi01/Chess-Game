@@ -8,8 +8,6 @@ using namespace std;
 //enum Colour {White = 0, Black = 1};
 
 class Player {
-        vector<Pieces*> (16);
-
         Colour c = Colour::White;
         int score = 0;
         int totalPieces = 0;
@@ -19,7 +17,7 @@ class Player {
                 int getColour();
                 void incScore();
                 int getTotalPieces();
-                vector<Pieces*> getPieces();
+
 };
 
 #endif
