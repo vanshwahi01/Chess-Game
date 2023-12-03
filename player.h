@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include "pieces.h"
 
+
 using namespace std;
 
 //in Sahib's piece.h
@@ -12,11 +13,12 @@ class Player {
         int score = 0;
         int totalPieces = 0;
         public:
-                Player();
+                Player(Colour c);
                 int getScore();
                 int getColour();
                 void incScore();
                 int getTotalPieces();
+                void draw();
 
 };
 
