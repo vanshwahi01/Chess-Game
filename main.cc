@@ -126,10 +126,15 @@ int main() {
         string command;
         bool gameStarted = false;
 
+        Player *p1{Colour::White};
+        Player *p2{Colour::Black};
         //for checking specs
         int numWhiteK, numBlackK;
         while(cin >> command) {
                 if(command == "setup") { //set up
+
+                HOW DO I MAKE THIS AN EMPTY BOARD AND THEN HAVE THIS BOARD CONTINUE BEING USED FOR ACTUAL GAMEPLAY
+
                         string action;
                         string piece;
                         string position;
@@ -143,16 +148,22 @@ int main() {
                                         if(piece == "P" && (getCoordinate(position).x == 0 || getCoordinate(position).x == 7)){
                                                 cout << "You can't have pawns on the first or last row of the board.";
                                         }
-                                        else if(piece != "K") addPiece(piece, getCoordinate(position), curPlayer, b);
+                                        else if(piece != "K") {
+                                                addPiece(piece, getCoordinate(position), curPlayer, b);
+                                                if(curPlayer == Colour::White) p1->incTotalPieces();
+                                                else p2->incTotalPieces();
+                                        }
                                        
                                         else{
                                                  if(curPlayer == Colour::White && numWhiteK < 1) { //only add a white k if there isn't one yet
                                                         addPiece(piece, getCoordinate(position), curPlayer, b);
                                                         numWhiteK++;
+                                                        p1->incTotalPieces();
                                                  }
                                                  if(curPlayer == Colour::Black && numBlackK < 1) {// only add a black K if there isn't one yet 
                                                         addPiece(piece, getCoordinate(position), curPlayer, b);
                                                         numBlackK++;
+                                                        p2->incTotalPieces();
                                                  }
                                         }
                                         //doesn't add a King for a colour if you already have a King for that colour
@@ -269,22 +280,20 @@ int main() {
                         string white-player;
                         string black-player;
                         cin << white-player << black-player;
-                        if(white-player == "human") {
-                                Player* p1{Colour::White};
-                        } else {
+                        if(white-player != "human") {
                                 istringstream iss{white-player};
                                 char level;
                                 for(int i = 0; i < 10; i++){iss >> level;}
-                                Computer* p1{Colour::White, level - '0'};
+                                dynamic_pointer_cast<Computer>(p1);
+                                p1->setLevel(level - '0');
 
                         }
-                        if(black-player == "human") {
-                                Player* p2{Colour::Black};
-                        } else {
+                        if(black-player != "human") {
                                 istringstream iss{black-player};
                                 char level;
                                 for(int i = 0; i < 10; i++){iss >> level;}
-                                Computer* p2{Colour::Black, level - '0'};
+                                dynamic_pointer_cast<Computer>(p2);
+                                p2->setLevel(level - '0');
 
                         }
                         gameStarted = true;
@@ -309,7 +318,22 @@ int main() {
                         else{ // game started
                                 while(true){
                                         //white goes first
+                                        if(p1 is a computer){
+
+                                        }
+                                        else{// p1 is human
+
+                                        }
                                         //black goes
+                                        
+                                        if(p2 is a computer){
+
+                                        }
+
+                                        else{//p2 is a human
+
+                                        }
+
                                         if(white King is checkmated){
                                                 p2->incScore();
                                                 break;
