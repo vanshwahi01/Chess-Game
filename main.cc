@@ -2,6 +2,12 @@
 #include "player.h"
 #include "pieces.h"
 #include "coordinate.h"
+#include "king.h"
+#include "queen.h"
+#include "bishop.h"
+#include "knight.h"
+#include "rook.h"
+#include "pawn.h"
 
 #include <iostream>
 #include <vector>
@@ -76,6 +82,40 @@ bool blackKChecked(Board &b, Coordinate &blackK) {
 }
 
 void addPiece(const string type, const Coordinate c, const Colour colour, Board &b){
+        string name;
+        if(type == "K") { //if we're adding a King   
+                King temp {c, colour, *b, "King"};
+        }
+        else if(type == "Q"){ // if we're adding a Queen
+                Queen temp {c, colour, *b, "Queen"};
+
+        }
+        else if(type == "B") { // if we're adding a Bishop
+                Bishop temp {c, colour, *b, "Bishop"};
+        }
+        else if(type == "R"){ // if we're adding a Rook
+                Rook temp {c, colour, *b, "Rook"};
+        }
+        else if(type == "N") { // if we're adding a Knight
+                Knight temp {c, colour, *b, "Knight"};
+        }
+        else if(type == "P"){ // if we're adding a Pawn
+                Pawn temp {c, colour, *b, "Pawn"};
+        }
+        else {
+                return; // don't do anything if valid type wasn't given
+        }
+        //checking if another piece already exists on this coordinate
+        for(auto p : b->pieces) {
+                //if this new piece is being added on a coordinate that already has a piece, new piece replaces old piece
+                if(p->getCoords() == c) {
+                        p = temp;
+                        //leave function
+                        return;
+                }
+        }
+        //adds piece to the vector of pieces
+        b->getPieces().push_back(temp); //need to change to setPiece cause pieces vector is private
         
 }
 
@@ -84,6 +124,7 @@ int main() {
         Board* b;
         Colour curPlayer= Colour::White;
         string command;
+        bool gameStarted = false;
 
         //for checking specs
         int numWhiteK, numBlackK;
@@ -97,72 +138,88 @@ int main() {
                                 if(action == "+") {
                                         //place piece
                                         cin >> piece >> position;
-                                        if(piece == "King"){
-                                                
-                                                //don't add a king if you already have one
-                                                if((curPlayer == Colour::White && numWhiteK < 1) || curPlayer == Colour::Black && numBlackK < 1 ) {
-                                                Coordinate c = getCoordinate(position);
-                                                        b[c.x][c.y]->piece = piece;
-                                                }
-                                                
-                                        } 
-                                        else { 
-                                                Coordinate c = getCoordinate(position);
-                                                b[c.x][c.y]->piece = piece;
+
+                                        //won't add the piece if it's a pawn on the first or last row of the board
+                                        if(piece == "P" && (getCoordinate(position).x == 0 || getCoordinate(position).x == 7)){
+                                                cout << "You can't have pawns on the first or last row of the board.";
                                         }
-
+                                        else if(piece != "K") addPiece(piece, getCoordinate(position), curPlayer, b);
+                                       
+                                        else{
+                                                 if(curPlayer == Colour::White && numWhiteK < 1) { //only add a white k if there isn't one yet
+                                                        addPiece(piece, getCoordinate(position), curPlayer, b);
+                                                        numWhiteK++;
+                                                 }
+                                                 if(curPlayer == Colour::Black && numBlackK < 1) {// only add a black K if there isn't one yet 
+                                                        addPiece(piece, getCoordinate(position), curPlayer, b);
+                                                        numBlackK++;
+                                                 }
+                                        }
+                                        //doesn't add a King for a colour if you already have a King for that colour
+                                        
                                 }
-                                if(action == "-"){
+
+                                else if(action == "-"){
                                         cin >> position;
-                                        Coordinate c = getCoordinate(position);
-                                        b->removePiece(c);
+                                        b->removePiece(getCoordinate(position));
 
                                 }
-                                if(action == "=") {
+
+                                else if(action == "=") {
                                         cin >> colour;
                                         if(colour == "white") curPlayer = Colour::White;
                                         else curPlayer = Colour::Black;
                                 }
-                                if(action == "done") {
+
+                                else if(action == "done") {
                                         //need to check specs for valid board
                                         while(numWhiteK < 1){//we need to add
-                                        cout << "You're missing a white King" << endl;
-                                        cout << "Provide the coordinates for the King, ex. 'a1'" << endl;
-                                        string coordinates;
-                                        cin >> coordinates;
-                                        Coordinates kingC = getCoordinate(coordinates);
-
-                                        b->setPiece("King", Colour::White, kingC);
+                                                cout << "You're missing a white King" << endl;
+                                                cout << "Provide the coordinates for the King, ex. 'a1'" << endl;
+                                                cin << position;
+                                                King temp {c, Colour::White, *b, "King"};
+                                                if(temp.isLegal(getCoordiante(position))){
+                                                        addPiece("K", getCoordinate(position), Colour::White, b)
+                                                } else{
+                                                        cout << "That isn't a legal position for the King, please provide an alternate position" << endl;
+                                                }
                                 
                                         }
 
                                         while(numBlackK < 1){//we need to add
-                                        cout << "You're missing a black King" << endl;
-                                        cout << "Provide the coordinates for the King, ex. 'a1'" << endl;
-                                        string coordinates;
-                                        cin >> coordinates;
-                                        Coordinates bKingC = getCoordinate(coordinates);
-
-                                        //need to some how set piece type and colour
-                                        b->setPiece("King", Colour::Black, bKingC);
+                                                cout << "You're missing a black King" << endl;
+                                                cout << "Provide the coordinates for the King, ex. 'a1'" << endl;
+                                                cin << position;
+                                                King temp {c, Colour::Black, *b, "King"};
+                                                if(temp.isLegal(getCoordiante(position))){
+                                                        addPiece("K", getCoordinate(position), Colour::Black, b)
+                                                } else{
+                                                        cout << "That isn't a legal position for the King, please provide an alternate position" << endl;
+                                                }
                                 
                                         }
+
+                                        //there's shouldn't be more than 1 of each King after setup command
+
+
+                                        DO I EVEN NEED THIS CHECK IF I DONT ADD PAWNS ON THE FIRST AND LAST ROW ANYWAYS
 
                                         //checking no pawns on first and last rows
                                         for(int j = 0; j < 8 ; i++) {
                                         Coordinate d{0, j};
-                                        if(b->getPiece(d)->getType() == "Pawn") { //the piece is a pawn
-                                                b->removePiece(d); //they move it
-                                                cout << "Pawn from the first row was removed" << endl;
-                                        }
-                                        d.x = 7;
-                                        if(b->getPiece(d)->getType() == "Pawn") { //the piece is a pawn
-                                                b->removePiece(d); // they move it
-                                                cout << "Pawn from the last row was removed" << endl;
-                                        }
+                                                if(b->getPiece(d)->getType() == "Pawn") { //the piece is a pawn
+                                                        b->removePiece(d); //they move it
+                                                        cout << "Pawn from the first row was removed" << endl;
+                                                }
+                                                d.x = 7;
+                                                //checking last row
+                                                if(b->getPiece(d)->getType() == "Pawn") { //the piece is a pawn
+                                                        b->removePiece(d); // they move it
+                                                        cout << "Pawn from the last row was removed" << endl;
+                                                }
                                         }
                                         //checking that king isn't in a checked posiiton
-                                        iterate through every piece on opposing side, call possible moves on those piece, check if any of those coordinates match King's coordinates'
+                                        //iterate through every piece on opposing side, call possible moves on those piece, check if any of those coordinates match King's coordinates'
                                         
                                         //checking white King
                                         //Figure out where both Kings are
@@ -172,17 +229,16 @@ int main() {
                                                 cout << "Your white King is in a checked position, please move it somewhere else" << endl;
                                                 //display the board
                                                 cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
-                                                string tempInput;
-                                                cin << tempInput;
-                                                Coordinate temp = getCoordinate(tempInput);
-                                                while(!b->getPiece(whiteK)->isLegal(temp)) {
+                                                cin << position;
+
+                                                while(!b->getPiece(whiteK)->isLegal(getCoordinate(position))) {
                                                         cout << "Your white King is in a checked position, please move it somewhere else" << endl;
                                                         //display the board
                                                         cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
-                                                        cin << tempInput;
-                                                        temp = getCoordinate(tempInput);
+                                                        cin << position;
                                                 }
-                                                b->move(b->getPiece(whiteK), temp);
+                                                
+                                                b->move(b->getPiece(whiteK), getCoordinate(position));
 
                                         }
                                         if(blackKChecked(b, blackK)) {
@@ -190,22 +246,24 @@ int main() {
                                                 cout << "Your black King is in a checked position, please move it somewhere else" << endl;
                                                 //display the board
                                                 cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
-                                                string tempBInput;
-                                                cin << tempBInput;
-                                                Coordinate tempB = getCoordinate(tempBInput);
-                                                while(!b->getPiece(blackK)->isLegal(temp)) {
+                                                cin << position;
+                                                while(!b->getPiece(blackK)->isLegal(getCoordinate(position))) {
                                                         cout << "Your black King is in a checked position, please move it somewhere else" << endl;
                                                         //display the board
                                                         cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
-                                                        cin << tempBInput;
-                                                        tempB = getCoordinate(tempBInput);
+                                                        cin << position;
                                                 }
-                                                b->move(b->getPiece(whiteK), tempB);
+                                                b->move(b->getPiece(whiteK), getCoordinate(position));
                                         }
-                                        
-                                } //end of if done
 
-                        }
+                                        break;
+                                } //end of if done
+                                else{
+                                        cout << "You didn't provide a valid command, please start your command with +, -, or =" << endl;
+                                        cout << "enter 'done' if you're done with set up" << endl;
+                                }
+
+                        }//done set up
                 }
                 else if(command == "game") {
                         string white-player;
@@ -231,29 +289,41 @@ int main() {
                                 int p2.level = level - '0';
 
                         }
+                        gameStarted = true;
 
-                
                 }//end of game if
                 
                 else if(command == "resign") {
                         if(curPlayer == Colour::White) p2.incScore();
                         else p1.incScore();
+                        cout << "----- Game finished -------" << endl;
                 }
                 else {
-                        while(true){
-                                //white goes first
-                                //black goes
-                                if(white King is checkmated){
-                                        p2->incScore();
-                                        break;
-                                }
-                                if(black King is checkmated){
-                                        p1->incScore();
-                                        break;
-                                }
-                                if(there's a stalemate){
-                                        increment both scores by 0.5
-                                        break;
+
+                        if(!gameStarted) {
+                                cout << "If you wanted to play a game, start with the command:"<<endl;
+                                cout << "'game white-player black-player'" << endl;
+                                cout << "where white-player or black-player can be either 'human' or 'computer[1-4]" << endl;
+                                cout <<endl;
+                                cout << "If you weren't trying to start the game there must have been a typo in your command." << endl;
+                        }
+                        
+                        else{ // game started
+                                while(true){
+                                        //white goes first
+                                        //black goes
+                                        if(white King is checkmated){
+                                                p2->incScore();
+                                                break;
+                                        }
+                                        if(black King is checkmated){
+                                                p1->incScore();
+                                                break;
+                                        }
+                                        if(there's a stalemate){
+                                                increment both scores by 0.5
+                                                break;
+                                        }
                                 }
                         }
 
