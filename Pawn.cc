@@ -19,13 +19,13 @@ vector<Coordinate> Pawn::possibleMoves(const Board& b, const Piece& p, const Coo
         pMoves.push_back({c->x, c->y + 1});
     }
 
-    if(c->x > 0 && b->isOccupied({c->x - 1, c->y + 1})) { // Check if left diagnol is occupied
+    if(c->x > 0 && c->y < 7 && b->isOccupied({c->x - 1, c->y + 1})) { // Check if left diagnol is occupied
         if(b->getPiece({c->x - 1, c->y + 1})->colour != p->colour) { // Check if it is opposing team's piece
             pMoves.push_back({c->x - 1, c->y + 1});
         }
     }
 
-    if(c->x < board.length - 1 && b->isOccupied({c->x + 1, c->y + 1})) { // Check if right diagnol is occupied
+    if(c->x < board.length - 1 && c->y < 7 && b->isOccupied({c->x + 1, c->y + 1})) { // Check if right diagnol is occupied
         if(b->getPiece({c->x + 1, c->y + 1})->colour != p->colour) { // Check if it is opposing team's piece
             pMoves.push_back({c->x + 1, c->y + 1});
         }

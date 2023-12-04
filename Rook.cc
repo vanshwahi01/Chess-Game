@@ -56,18 +56,11 @@ vector<Coordinate> Rook::possibleMoves(const Board& b, const Piece& p, const Coo
         if(!b->isOccupied({x, c->y})) pMoves.push_back({x, c->y}); // If space is empty, add it to vector
     }
 
-    if(!b->isOccupied({c->x + 1, y}) && !b->isOccupied({c->x + 2, y}) && p->getNumMoves() == 0) { // Check for castling
+    if(c->x - 2 > -1 && !b->isOccupied({c->x - 1, y}) && !b->isOccupied({c->x - 2, y}) && p->getNumMoves() == 0) { // Check for castling
         for(auto i: b->getPieces()) { // Looking for the correct king
             if(i->getType == "King" && i->getColour() == p->getColour()) { // Find the correct King
-                if(i->getNumMoves() == 0) { // Check if it has moved yet
-                    for(auto j : b->pieces) { // Iterate over the rest of the board's pieces
-                        for(auto w : j->possibleMoves(b, j, j->getCoords())){ // checking if king is in checked position
-                            if(w == i.getCoords()) {               
-                                    return pMoves;
-                            }
-                        }
-                    }
-                    pMoves.push_back({{c->x + 2, y}});
+                if(i->getNumMoves() == 0 && !i.isChecked(b) && i->getCoords() == {c->x - 3, c->y}) { // Check if it has moved yet
+                    pMoves.push_back({{c->x - 2, y}});
                 }
                 break;
             }
