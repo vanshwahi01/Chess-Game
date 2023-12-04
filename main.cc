@@ -138,6 +138,7 @@ int main() {
                         string action;
                         string piece;
                         string position;
+                        string endPosition;
                         string colour;
                         while(cin >> action) {
                                 if(action == "+") {
@@ -297,6 +298,7 @@ int main() {
 
                         }
                         gameStarted = true;
+                        cout << 
 
                 }//end of game if
                 
@@ -305,51 +307,44 @@ int main() {
                         else p1.incScore();
                         cout << "----- Game finished -------" << endl;
                 }
-                else {
+                else if (command == "move"){
+                        cin << position << endPosition;
+                        if(p1 is a computer){
 
-                        if(!gameStarted) {
-                                cout << "If you wanted to play a game, start with the command:"<<endl;
-                                cout << "'game white-player black-player'" << endl;
-                                cout << "where white-player or black-player can be either 'human' or 'computer[1-4]" << endl;
-                                cout <<endl;
-                                cout << "If you weren't trying to start the game there must have been a typo in your command." << endl;
                         }
+                        else{// p1 is human
+                                b->move(position, endPosition);
+                        }
+                        //black goes
                         
-                        else{ // game started
-                                while(true){
-                                        //white goes first
-                                        if(p1 is a computer){
+                        if(p2 is a computer){
 
-                                        }
-                                        else{// p1 is human
-
-                                        }
-                                        //black goes
-                                        
-                                        if(p2 is a computer){
-
-                                        }
-
-                                        else{//p2 is a human
-
-                                        }
-
-                                        if(white King is checkmated){
-                                                p2->incScore();
-                                                break;
-                                        }
-                                        if(black King is checkmated){
-                                                p1->incScore();
-                                                break;
-                                        }
-                                        if(there's a stalemate){
-                                                p1->draw();
-                                                p2->draw();
-                                                break;
-                                        }
-                                }
                         }
 
+                        else{//p2 is a human
+                                b->move(position, endPosition);
+
+                        }
+
+                        if(white King is checkmated){
+                                p2->incScore();
+                                break;
+                        }
+                        if(black King is checkmated){
+                                p1->incScore();
+                                break;
+                        }
+                        if(there's a stalemate){
+                                p1->draw();
+                                p2->draw();
+                                break;
+                        }
+                }
+                 else {
+                        //possible typo
+                        cout << "You didn't output a valid command!" << endl;
+                        cout << "You said: " << command << endl;
+                        continue;
                 }                     
 
 
