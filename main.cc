@@ -330,25 +330,35 @@ int main() {
                                 }
 
                         }
-                        if(getPiece(whiteKCoords(b))->possibleMoves(b, getPiece(whiteKCoords(b)), whiteKCoords(b)).size() == 0){ //whiteK was checkmated
+                        if(getPiece(whiteKCoords(b))->possibleMoves(b, getPiece(whiteKCoords(b)), whiteKCoords(b)).empty()){ //whiteK was checkmated
                                 p2->incScore();
                                 cout << "Game over: Black wins";
                                 //display the board
                                 break;
 
                         }
-                        if(getPiece(blackKCoords(b))->possibleMoves(b, getPiece(blackKCoords(b)), blackKCoords(b)).size() == 0){ //blackK was checkmated
+                        if(getPiece(blackKCoords(b))->possibleMoves(b, getPiece(blackKCoords(b)), blackKCoords(b)).empty()){ //blackK was checkmated
                                 p1->incScore();
                                 cout << "Game over: White wins";
                                 //display the board
                                 break;
 
                         }
-                        if(there's a stalemate){
+
+                        bool isStalemate = false;
+                        for(auto p: b->getPieces()) {
+                                if(!p->possibleMoves().empty()) {
+                                        isStalemate = false;
+                                        break;
+                                } 
+                                isStalemate = true;
+                        }
+                        if(isStalemate){ // Add second condition of stalemate (insufficent material)
                                 p1->draw();
                                 p2->draw();
                                 break;
                         }
+
                 }
                  else {
                         //possible typo
