@@ -57,43 +57,43 @@ Coordinate blackKCoord(Board &b) {
         }
 }
 
-void addPiece(const string type, const Coordinate c, const Colour colour, Board &b){
-        string name;
-        if(type == "K") { //if we're adding a King   
-                King temp {c, colour, *b, "King"};
-        }
-        else if(type == "Q"){ // if we're adding a Queen
-                Queen temp {c, colour, *b, "Queen"};
-        }
-        else if(type == "B") { // if we're adding a Bishop
-                Bishop temp {c, colour, *b, "Bishop"};
-        }
-        else if(type == "R"){ // if we're adding a Rook
-                Rook temp {c, colour, *b, "Rook"};
-        }
-        else if(type == "N") { // if we're adding a Knight
-                Knight temp {c, colour, *b, "Knight"};
-        }
-        else if(type == "P"){ // if we're adding a Pawn
-                Pawn temp {c, colour, *b, "Pawn"};
-        }
-        else {
-                return; // don't do anything if valid type wasn't given
-        }
-        //checking if another piece already exists on this coordinate
-        for(auto p : b->pieces) {
-                //if this new piece is being added on a coordinate that already has a piece, new piece replaces old piece
-                if(p->getCoords() == c) {
-                        p = temp;
-                        //SAHIB GET THE ASSIGNMENT OPERATOR
-                        //leave function
-                        return;
-                }
-        }
-        //adds piece to the vector of pieces
-        b->getPieces().push_back(temp); //need to change to setPiece cause pieces vector is private
+// void addPiece(const string type, const Coordinate c, const Colour colour, Board &b){
+//         string name;
+//         if(type == "K") { //if we're adding a King   
+//                 King temp {c, colour, *b, "King"};
+//         }
+//         else if(type == "Q"){ // if we're adding a Queen
+//                 Queen temp {c, colour, *b, "Queen"};
+//         }
+//         else if(type == "B") { // if we're adding a Bishop
+//                 Bishop temp {c, colour, *b, "Bishop"};
+//         }
+//         else if(type == "R"){ // if we're adding a Rook
+//                 Rook temp {c, colour, *b, "Rook"};
+//         }
+//         else if(type == "N") { // if we're adding a Knight
+//                 Knight temp {c, colour, *b, "Knight"};
+//         }
+//         else if(type == "P"){ // if we're adding a Pawn
+//                 Pawn temp {c, colour, *b, "Pawn"};
+//         }
+//         else {
+//                 return; // don't do anything if valid type wasn't given
+//         }
+//         //checking if another piece already exists on this coordinate
+//         for(auto p : b->pieces) {
+//                 //if this new piece is being added on a coordinate that already has a piece, new piece replaces old piece
+//                 if(p->getCoords() == c) {
+//                         p = temp;
+//                         //SAHIB GET THE ASSIGNMENT OPERATOR
+//                         //leave function
+//                         return;
+//                 }
+//         }
+//         //adds piece to the vector of pieces
+//         b->getPieces().push_back(temp); //need to change to setPiece cause pieces vector is private
         
-}
+// }
 
 int main() {
 
@@ -308,7 +308,13 @@ int main() {
                         //black goes
                         
                         if(p2 is a computer){
+                                if(level 1){
+                                        level 1 move function: get a random index of pieces vector, check if its the right colour, get random index of possible moves vector
+                                        b->move(getCoordinate(position), getCoordinate(endPosition));
+                                }
+                                else if (level 2){
 
+                                }
                         }
 
                         else{//p2 is a human
@@ -318,18 +324,6 @@ int main() {
 
                         }
 
-                        if(white King is checkmated){
-                                p2->incScore();
-                                break;
-                                for(auto p : b->pieces) {
-                                        for(auto i : p->possibleMoves(b, p, p->getCoords())){ // checking if white king is in checked position
-                                                if(i == whiteK) {               
-                                                        return true;
-                                                }
-                                        }
-                                }
-
-                        }
                         if(getPiece(whiteKCoords(b))->possibleMoves(b, getPiece(whiteKCoords(b)), whiteKCoords(b)).empty()){ //whiteK was checkmated
                                 p2->incScore();
                                 cout << "Game over: Black wins";
@@ -342,7 +336,6 @@ int main() {
                                 cout << "Game over: White wins";
                                 //display the board
                                 break;
-
                         }
 
                         bool isStalemate = false;
