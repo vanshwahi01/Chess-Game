@@ -351,7 +351,9 @@ int main() {
                                 p2->draw();
                                 break;
                         }
-
+                        if(curPlayer == Colour::White){
+                                curPlayer = Colour::Black;
+                        } else curPlayer = Colour::White;
                 }
                  else {
                         //possible typo
