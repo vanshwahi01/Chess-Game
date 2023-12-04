@@ -1,4 +1,3 @@
-#include <string>
 #ifndef __TEXTDISPLAY_H__
 #define __TEXTDISPLAY_H__
 #include <string>
