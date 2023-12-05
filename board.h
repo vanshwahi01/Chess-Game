@@ -15,23 +15,20 @@ class Xwindow; // if we have time
 
 class Board {
     vector<Piece*> p; 
-    //Piece **board;
     vector<vector<Piece*>> board;
-    bool playerTurn;
     Textdisplay *td;
-    Xwindow *xw;
+    //Xwindow *xw;
     
     public:
         // default blank board constructor
-        Board();
-        Board(vector<Piece*> p, Piece **board, bool playerTurn, Textdisplay *td, Xwindow *xw);
+        Board(Textdisplay *td);
         ~Board();
-        bool isOccupied(const Board& b, const Coordinate& c);
-        void addPiece(string &type, Colour &colour,  const Coordinate c);
-        vector<Coordinate> Board::getPieces(Coordinate c);
-        void removePiece(Coordinate c);
-        void move(Coordinate c1, Coordinate c2);
-        Piece *getPiece(Coordinate c); // returning pointer to piece check it
+        bool isOccupied(const Coordinate& c);
+        bool addPiece(string &type, Colour &colour,  const Coordinate c);
+        vector<Piece*> getPieces();
+        void removePiece(const Coordinate& c);
+        bool move(const Coordinate& c1, const Coordinate& c2);
+        Piece *getPiece(const Coordinate& c); // returning pointer to piece check it
         void setUpNormalBoard(); // setting up a basic chess board
 };
 

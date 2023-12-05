@@ -3,24 +3,20 @@
 
 using namespace std;
 
-
-Board::Board() : {} 
-
-Board::Board(vector<Piece*> p, Piece **board, bool playerTurn, Textdisplay *td, Xwindow *xw) : p(p), board(board), playerTurn(playerTurn), td(td), xw(xw) {
-    vector<vector<Piece*>> board(8, vector<Piece*>(8, nullptr));
-}
+Board::Board(Textdisplay *td) : p{vector<Piece*>(0)}, board{vector<vector<Piece*>> board(8, vector<Piece*>(8, nullptr))}, td(td) {}
 
 Board::~Board() {
+    p.clear();
     board.clear();
+    delete td;
 }
 
-bool Board::isOccupied(const Board& b, const Coordinate& c) {
-    return b.board[c.x][c.y] != nullptr;
+bool Board::isOccupied(const Coordinate& c) {
+    return board[c.x][c.y] != nullptr;
 }
 
-void addPiece(const string type, const Coordinate c, const Colour colour, Board &b){
+bool addPiece(const string type, const Coordinate c, const Colour colour, Board &b){
         if(c->x < 0 || c->x > 7 || c->y < 0 || c->y > 7) return; // Validate coordinate
-        string name;
         if(type == "K") { //if we're adding a King
             if(b->isOccupied(c)) removePiece(c);
             King temp = new King{c, colour, b, "King"};
@@ -46,69 +42,89 @@ void addPiece(const string type, const Coordinate c, const Colour colour, Board 
             Pawn temp = new Pawn{c, colour,b, "Pawn"};
         }
         else {
-            return; // don't do anything if valid type wasn't given
+            cout << "Please enter valid input." << endl;
+            return false; // don't do anything if valid type wasn't given
         }
-        //adds piece to the vector of pieces
-        p.push_back(&temp); //need to change to setPiece cause pieces vector is private
+        p.push_back(&temp); // adds piece to the vector of pieces
+        board[c.x][c.y] = &temp;
+        return true;
 }
 
-vector<Coordinate> Board::getPieces(Coordinate c) {
+vector<Coordinate> Board::getPieces() {
     return p;
 }
 
-void Board::removePiece(Coordinate c) {
+void Board::removePiece(const Coordinate& c) {
     delete board[c.x][c.y];
+    board[c.x][c.y] = nullptr;
 }
 
-void Board::move(Coordinate c1, Coordinate c2) {
-    if(Piece::isLegal(c2) && Piece::isLegal(c1)) {
-        throw "Illegal move";
+bool Board::move(const Coordinate& c1, const Coordinate& c2) { // c1 is start, c2 is end
+    if(c1->x < 0 || c1->x > 7 || c1->y < 0 || c1->y > 7) { // Validate coordinate
+        cout << "Coordinate 1 out of board. Please enter valid coordinate." << endl;
+        return false; 
     }
-    board[c2.x][c2.y] = board[c1.x][c1.y];
-    board[c1.x][c1.y] = nullptr;
+
+    if(c2->x < 0 || c2->x > 7 || c2->y < 0 || c2->y > 7) { // Validate coordinate
+        cout << "Coordinate 2 out of board. Please enter valid coordinate." << endl;
+        return false; 
+    }
+
+    Piece* temp = getPiece(c1);
+
+    if(temp->isLegal(c2)) {
+        temp->setCoords(c2);
+        board[c2.x][c2.y] = temp;
+        board[c1.x][c1.y] = nullptr;
+        return true;
+    }
+
+    cout << "That is not a legal move, please enter a new move." << endl;
+    return false;
 }
 
-Piece *Board::getPiece(Coordinate c) {
+Piece* Board::getPiece(const Coordinate& c) {
     return board[c.x][c.y];
 }
 
 void setUpNormalBoard() {
-    ~Board();
-    board = new Piece*[64];
     // Black pieces
-    board[0] = new Rook({0,0}, Colour::Black, p); 
-	board[1] = new Knight({1,0}, Colour::Black, p);
-	board[2] = new Bishop({2,0}, Colour::Black, p);
-    board[3] = new King({3,0}, Colour::Black, p);
-    board[4] = new Queen({4,0}, Colour::Black, p);
-	board[5] = new Bishop({5,0}, Colour::Black, p);
-	board[6] = new Knight({6,0}, Colour::Black, p);
-	board[7] = new Rook({7,0}, Colour::Black, p);
-    int j = 8;
+    board[0][0] = new Rook({0,0}, Colour::Black, *this, "Rook"); 
+	board[1][0] = new Knight({1,0}, Colour::Black, *this, "Knight");
+	board[2][0] = new Bishop({2,0}, Colour::Black, *this, "Bishop");
+    board[3][0] = new King({3,0}, Colour::Black, *this, "King");
+    board[4][0] = new Queen({4,0}, Colour::Black, *this, "Queen");
+	board[5][0] = new Bishop({5,0}, Colour::Black, *this, "Bishop");
+	board[6][0] = new Knight({6,0}, Colour::Black, *this, "Knight");
+	board[7][0] = new Rook({7,0}, Colour::Black, *this, "Rook");
     for (int i = 0; i < 8; ++i) {
-        board[j] = new Pawn({i,0}, Colour::Black, p); // row of pawns
-        j++;
+        board[i][1] = new Pawn({i,1}, Colour::Black, *this, "Pawn"); // row of pawns
     }
-
-    for(int i = 16; i < 48; ++i) {
-        board[i] = nullptr; // empty spaces
+    for(int j = 0; j < 2; j++) { // Adds two rows of pieces to vector
+        for(int i = 0; i < 8; i++) {
+            p.push_back(getPiece({i, j}));
+        }
     }
     
-    j = 48;
     for(int i = 0; i < 8; ++i) {
-        board[j] = new Pawn({i,7}, Colour::White, p); // row of pawns
-        j++;
+        board[i][6] = new Pawn({i,6}, Colour::White, *this, "Pawn"); // row of pawns
     }
 
     // White pieces
-    board[56] = new Rook({0,7}, Colour::White, p);
-    board[57] = new Knight({1,7}, Colour::White, p);
-    board[58] = new Bishop({2,7}, Colour::White, p);
-    board[59] = new Queen({3,7}, Colour::White, p);
-    board[60] = new King({4,7}, Colour::White, p);
-    board[61] = new Bishop({5,7}, Colour::White, p);
-    board[62] = new Knight({6,7}, Colour::White, p);
-    board[63] = new Rook({7,7}, Colour::White, p);
+    board[0][7] = new Rook({0,7}, Colour::White, *this, "Rook");
+    board[1][7] = new Knight({1,7}, Colour::White, *this, "Knight");
+    board[2][7] = new Bishop({2,7}, Colour::White, *this, "Bishop");
+    board[3][7] = new Queen({3,7}, Colour::White, *this, "Queen");
+    board[4][7] = new King({4,7}, Colour::White, *this, "King");
+    board[5][7] = new Bishop({5,7}, Colour::White, *this, "Bishop");
+    board[6][7] = new Knight({6,7}, Colour::White, *this, "Knight");
+    board[7][7] = new Rook({7,7}, Colour::White, *this, "Rook");
+
+    for(int j = 6; j < 8; j++) { // Adds last two rows of pieces to vector
+        for(int i = 0; i < 8; i++) {
+            p.push_back(getPiece({i, j}));
+        }
+    }
 }
 
 

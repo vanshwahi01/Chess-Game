@@ -9,15 +9,6 @@ Public:
     Board();
 };
 
-class Coordinate {
-public:
-    int x;
-    int y;
-    
-    Coordinate();
-    Coordinate(int x, int y);
-};
-
 enum Colour {Black, White};
 
 class Piece {
@@ -28,11 +19,11 @@ class Piece {
     string type;
 
 public:
-    Piece(Coordinate c, Colour colour, Board b, string type);
+    Piece(Coordinate c, Colour colour, const Board& b, string type);
 
     virtual vector<Coordinate> possibleMoves(const Board& b, const Piece& p, const Coordinate& c); // Returns a vector of availble moves
 
-    virtual void move(const Coordinate& c, const Board& b); // Moves the current piece and throws an exception if the move is illegal
+    void setCoords(const Coordinate& c);
 
     int getNumMoves(); // Returns numMoves
 

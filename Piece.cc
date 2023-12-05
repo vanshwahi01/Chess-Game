@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Piece::Piece(Coordinate c, Colour colour, Board b, string type) : coords{c}, colour{colour}, curBoard{b}, type{type} numMoves{0} {}
+Piece::Piece(Coordinate c, Colour colour, const Board& b, string type) : coords{c}, colour{colour}, curBoard{b}, type{type} numMoves{0} {}
 
 vector<Coordinate> Piece::possibleMoves(const Board& b, const Piece& p, const Coordinate& c) {}
 
@@ -45,6 +45,10 @@ bool Piece::isLegal(const Coordinate& c) {
         // position of either king
     }
     return false;
+}
+
+void Piece::setCoords(const Coordinate& c) {
+    coords = c;
 }
 
 Board::Board() : x{0} {}
