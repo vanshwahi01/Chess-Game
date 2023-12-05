@@ -1,7 +1,8 @@
 #ifndef ___PAWN___
 #define ___PAWN___
 #include <vector>
-#include "piece.h"
+#include <string>
+#include "Piece.h"
 
 
 using namespace std;
@@ -9,11 +10,11 @@ using namespace std;
 
 class Pawn: public Piece {
 public:
-    Pawn(Coordinate c, Colour colour, Board b);
+    Pawn(Coordinate c, Colour colour, Board b, string type);
 
-    void promote(const Board& b, Piece& p);
+    void promote(Board& b, Piece& p);
 
-    vector<Coordinate> possibleMoves(const Board& b, const Piece& p, const Coordinate& c) override; // Returns a vector of availble moves
+    vector<Coordinate> possibleMoves(Board& b, Piece& p, Coordinate& c) override; // Returns a vector of availble moves
 };
 
 #endif
