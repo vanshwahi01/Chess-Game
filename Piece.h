@@ -1,3 +1,6 @@
+#ifndef ___PIECE___
+#define ___PIECE___
+
 #include <vector>
 #include "Coordinate.h"
 
@@ -37,3 +40,5 @@ public:
     
     virtual ~Piece() = 0;
 };
+
+#endif
