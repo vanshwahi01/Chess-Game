@@ -3,13 +3,14 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "coordinate.h"
 using namespace std;
 
 // constant size of board
 int sizeboard = 8;
 
 class TextDisplay {
-    vector<vector<chartheDisplay>>;
+    vector<vector<char>> theDisplay;
     public:
     TextDisplay();
     ~TextDisplay();
@@ -18,4 +19,3 @@ class TextDisplay {
 };
 
 #endif
-

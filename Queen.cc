@@ -1,108 +1,109 @@
 #include <vector>
-#include "Piece.h"
+#include <string>
+#include "piece.h"
+#include "Queen.h"
 
 using namespace std;
 
 Queen::Queen(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour, b, type} {}
 
-vector<Coordinate> Queen::possibleMoves(const Board& b, const Piece& p, const Coordinate& c) {
-    vector<Coordinates> pMoves[0];
-    
-    for(int x = p->getCoords().x + 1, y = p->getCoords().y + 1; x < 7 && y < 7; x++, y++) { // Right forward diagnol
-        if(b->isOccupied({x, y}) && b->getPiece({x, y}).getColour() == p->getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
+vector<Coordinate> Queen::possibleMoves(Board& b, Piece& p, Coordinate& c) {
+    vector<Coordinate> pMoves(0);
 
-        if(b->isOccupied({x, y}) && b->getPiece({x, y}).getColour() != p->getColour()) {
+    for(int i = p.getCoords().x + 1, j = p.getCoords().y + 1; (i < 7) && (j < 7); i++, j++) { // Right forward diagnol
+        if(b.isOccupied({i, j}) && b.getPiece({i, j})->getColour() == p.getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
+
+        if(b.isOccupied({i, j}) && b.getPiece({i, j})->getColour() != p.getColour()) {
             // If the piece blocking the path is the opposite colour, add it to the vector and break
-            pMoves.push_back({x, y});
+            pMoves.push_back({i, j});
             break;
         }
 
-        if(!b->isOccupied({x, y})) pMoves.push_back({x, y}); // If space is empty, add it to vector
+        if(!b.isOccupied({i, j})) pMoves.push_back({i, j}); // If space is empty, add it to vector
     }
 
-    for(int x = p->getCoords().x + 1, y = p->getCoords().y - 1; x < 7 && y > -1; x++, y--) { // Right backwards diagnol
-        if(b->isOccupied({x, y}) && b->getPiece({x, y}).getColour() == p->getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
+    for(int i = p.getCoords().x + 1, j = p.getCoords().y - 1; i < 7 && j > -1; i++, j--) { // Right backwards diagnol
+        if(b.isOccupied({i, j}) && b.getPiece({i, j})->getColour() == p.getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
 
-        if(b->isOccupied({x, y}) && b->getPiece({x, y}).getColour() != p->getColour()) {
+        if(b.isOccupied({i, j}) && b.getPiece({i, j})->getColour() != p.getColour()) {
             // If the piece blocking the path is the opposite colour, add it to the vector and break
-            pMoves.push_back({x, y});
+            pMoves.push_back({i, j});
             break;
         }
 
-        if(!b->isOccupied({x, y})) pMoves.push_back({x, y}); // If space is empty, add it to vector
+        if(!b.isOccupied({i, j})) pMoves.push_back({i, j}); // If space is empty, add it to vector
     }
 
-    for(int x = p->getCoords().x - 1, y = p->getCoords().y + 1; x > -1 && y < 7; x--, y++) { // Left forward diagnol
-        if(b->isOccupied({x, y}) && b->getPiece({x, y}).getColour() == p->getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
+    for(int i = p.getCoords().x - 1, j = p.getCoords().y + 1; i > -1 && j < 7; i--, j++) { // Left forward diagnol
+        if(b.isOccupied({i, j}) && b.getPiece({i, j})->getColour() == p.getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
 
-        if(b->isOccupied({x, y}) && b->getPiece({x, y}).getColour() != p->getColour()) {
+        if(b.isOccupied({i, j}) && b.getPiece({i, j})->getColour() != p.getColour()) {
             // If the piece blocking the path is the opposite colour, add it to the vector and break
-            pMoves.push_back({x, y});
+            pMoves.push_back({i, j});
             break;
         }
 
-        if(!b->isOccupied({x, y})) pMoves.push_back({x, y}); // If space is empty, add it to vector
+        if(!b.isOccupied({i, j})) pMoves.push_back({i, j}); // If space is empty, add it to vector
     }
 
-    for(int x = p->getCoords().x - 1, y = p->getCoords().y - 1; x > -1 && y > -1; x--, y--) { // Left backwards diagnol
-        if(b->isOccupied({x, y}) && b->getPiece({x, y}).getColour() == p->getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
+    for(int i = p.getCoords().x - 1, j = p.getCoords().y - 1; i > -1 && j > -1; i--, j--) { // Left backwards diagnol
+        if(b.isOccupied({i, j}) && b.getPiece({i, j})->getColour() == p.getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
 
-        if(b->isOccupied({x, y}) && b->getPiece({x, y}).getColour() != p->getColour()) {
+        if(b.isOccupied({i, j}) && b.getPiece({i, j})->getColour() != p.getColour()) {
             // If the piece blocking the path is the opposite colour, add it to the vector and break
-            pMoves.push_back({x, y});
+            pMoves.push_back({i, j});
             break;
         }
 
-        if(!b->isOccupied({x, y})) pMoves.push_back({x, y}); // If space is empty, add it to vector
+        if(!b.isOccupied({i, j})) pMoves.push_back({i, j}); // If space is empty, add it to vector
     }
 
-    for(int y = p->getCoords().y + 1; y < 7; y++) { // Forward Straight
-        if(b->isOccupied({c->x, y}) && b->getPiece({c->x, y}).getColour() == p->getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
+    for(int j = p.getCoords().y + 1; j < 7; j++) { // Forward Straight
+        if(b.isOccupied({c.x, j}) && b.getPiece({c.x, j})->getColour() == p.getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
 
-        if(b->isOccupied({c->x, y}) && b->getPiece({c->x, y}).getColour() != p->getColour()) {
+        if(b.isOccupied({c.x, j}) && b.getPiece({c.x, j})->getColour() != p.getColour()) {
             // If the piece blocking the path is the opposite colour, add it to the vector and break
-            pMoves.push_back({c->x, y});
+            pMoves.push_back({c.x, j});
             break;
         }
 
-        if(!b->isOccupied({c->x, y})) pMoves.push_back({c->x, y}); // If space is empty, add it to vector
+        if(!b.isOccupied({c.x, j})) pMoves.push_back({c.x, j}); // If space is empty, add it to vector
     }
 
-    for(int y = p->getCoords().y - 1; y > - 1; y--) { // Backwards straight
-        if(b->isOccupied({c->x, y}) && b->getPiece({c->x, y}).getColour() == p->getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
+    for(int j = p.getCoords().y - 1; j > - 1; j--) { // Backwards straight
+        if(b.isOccupied({c.x, j}) && b.getPiece({c.x, j})->getColour() == p.getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
 
-        if(b->isOccupied({c->x, y}) && b->getPiece({c->x, y}).getColour() != p->getColour()) {
+        if(b.isOccupied({c.x, j}) && b.getPiece({c.x, j})->getColour() != p.getColour()) {
             // If the piece blocking the path is the opposite colour, add it to the vector and break
-            pMoves.push_back({c->x, y});
+            pMoves.push_back({c.x, j});
             break;
         }
 
-        if(!b->isOccupied({c->x, y})) pMoves.push_back({c->x, y}); // If space is empty, add it to vector
+        if(!b.isOccupied({c.x, j})) pMoves.push_back({c.x, j}); // If space is empty, add it to vector
     }
 
-    for(int x = p->getCoords().x - 1; x > -1; x--) { // Left straight
-        if(b->isOccupied({x, c->y}) && b->getPiece({x, c->y}).getColour() == p->getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
+    for(int i = p.getCoords().x - 1; i > -1; i--) { // Left straight
+        if(b.isOccupied({i, c.y}) && b.getPiece({i, c.y})->getColour() == p.getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
 
-        if(b->isOccupied({x, c->y}) && b->getPiece({x, c->y}).getColour() != p->getColour()) {
+        if(b.isOccupied({i, c.y}) && b.getPiece({i, c.y})->getColour() != p.getColour()) {
             // If the piece blocking the path is the opposite colour, add it to the vector and break
-            pMoves.push_back({x, c->y});
+            pMoves.push_back({i, c.y});
             break;
         }
 
-        if(!b->isOccupied({x, c->y})) pMoves.push_back({x, c->y}); // If space is empty, add it to vector
+        if(!b.isOccupied({i, c.y})) pMoves.push_back({i, c.y}); // If space is empty, add it to vector
     }
 
-    for(int x = p->getCoords().x + 1; x < 7; x++) { // Right straight
-        if(b->isOccupied({x, c->y}) && b->getPiece({x, c->y}).getColour() == p->getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
+    for(int i = p.getCoords().x + 1; i < 7; i++) { // Right straight
+        if(b.isOccupied({i, c.y}) && b.getPiece({i, c.y})->getColour() == p.getColour()) break; // Stop checking the diagonal once there is a piece that is your colour
 
-        if(b->isOccupied({x, c->y}) && b->getPiece({x, c->y}).getColour() != p->getColour()) {
+        if(b.isOccupied({i, c.y}) && b.getPiece({i, c.y})->getColour() != p.getColour()) {
             // If the piece blocking the path is the opposite colour, add it to the vector and break
-            pMoves.push_back({x, c->y});
+            pMoves.push_back({i, c.y});
             break;
         }
 
-        if(!b->isOccupied({x, c->y})) pMoves.push_back({x, c->y}); // If space is empty, add it to vector
+        if(!b.isOccupied({i, c.y})) pMoves.push_back({i, c.y}); // If space is empty, add it to vector
     }
-
     return pMoves;
 }

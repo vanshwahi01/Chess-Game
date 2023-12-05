@@ -5,7 +5,7 @@ TextDisplay::TextDisplay() : theDisplay{vector<vector<char>>(8, vector<char>(8, 
   for(int i = 0; i < 8; i++) {
     for(int j = 0; j < 8; j++) {
       if(i % 2 == 0) { // Every other row
-        if(j % 2 = 0) { // Every other column
+        if(j % 2 == 0) { // Every other column
           theDisplay[i][j] = '_';
         }
       } else {
@@ -17,12 +17,12 @@ TextDisplay::TextDisplay() : theDisplay{vector<vector<char>>(8, vector<char>(8, 
   }
 }
 
-TextDisplay::~TextDisplay() { 
+TextDisplay::~TextDisplay() {
   theDisplay.clear();
 }
 
-void TextDisplay::notify(char ch, const Coordinate c) {
-    theDisplay[c->x][c->y] = ch;
+void TextDisplay::notify(char ch, const Coordinate& c) {
+    theDisplay[c.x][c.y] = ch;
 }
 
 // ostream &operator<<(ostream &out, const TextDisplay &td) {
@@ -38,20 +38,19 @@ void TextDisplay::notify(char ch, const Coordinate c) {
 //       }
 //       else {
 //         out << td.theDisplay[row][col];
-//       }  
+//       }
 //     }
 //     out << endl;
-//   }  
+//   }
 //   return out;
 // }
 
 ostream &operator<<(ostream &out, const TextDisplay &td) {
   for (int i = 0; i < 8; i++) {
     for (int j; j < 8; j++) {
-      out << theDisplay[i][j];
+      out << td.theDisplay[i][j];
     }
     out << endl;
   }
   return out;
 }
-

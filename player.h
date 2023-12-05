@@ -1,6 +1,6 @@
 #ifndef _PLAYER_H
 #define _PLAYER_H
-#include "Piece.h"
+#include "piece.h"
 
 
 using namespace std;

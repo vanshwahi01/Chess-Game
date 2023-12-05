@@ -1,7 +1,7 @@
 #ifndef ___KING___
 #define ___KING___
 #include <vector>
-#include "Piece.h"
+#include "piece.h"
 
 
 using namespace std;
@@ -9,14 +9,13 @@ using namespace std;
 
 class King: public Piece {
 public:
-    King(Coordinate c, Colour colour, Board b, string type);
+    King(Coordinate c, Colour colour, Board b);
+
+    vector<Coordinate> possibleMoves(const Board& b, const Piece& p, const Coordinate& c) override; // Returns a vector of availble moves
 
     bool isChecked(const Board& b);
 
     bool willBeChecked(const Board& b, const Coordinate& c);
-
-    vector<Coordinate> possibleMoves( Board& b, Piece& p, Coordinate& c) override; // Returns a vector of availble moves
-
 };
 
 #endif

@@ -1,13 +1,15 @@
+#include <string>
 #include "player.h"
 
 using namespace std;
 
-Player::Player(Colour colour) : colour{colour} {} //waiting to figure out how pieces are declared
+Player::Player(Colour colour) : colour{colour} {}
 
 int Player::getScore() {
         return score;
 }
 
+// was int before
 Colour Player::getColour() {
         return colour;
 }

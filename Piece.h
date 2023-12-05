@@ -2,20 +2,19 @@
 #define ___PIECE___
 
 #include <vector>
-#include "Coordinate.h"
-#include "Board.h"
+#include <string>
+#include "coordinate.h"
+#include "board.h"
 
 using namespace std;
 
 /*
 class Board {
-    int x;
-public:
-    Board();
+    int x = 0;
+    public:
+        Board();
 };
 */
-
-enum Colour {Black, White};
 
 class Piece {
     Coordinate coords;
@@ -25,9 +24,9 @@ class Piece {
     string type;
 
 public:
-    Piece(Coordinate c, Colour colour, const Board& b, string type);
+    Piece(Coordinate c, Colour colour2, Board& b, string type);
 
-    virtual vector<Coordinate> possibleMoves(const Board& b, const Piece& p, const Coordinate& c); // Returns a vector of availble moves
+    virtual vector<Coordinate> possibleMoves(Board& b, Piece& p, Coordinate& c); // Returns a vector of availble moves
 
     void setCoords(const Coordinate& c);
 
@@ -37,10 +36,10 @@ public:
 
     Coordinate getCoords(); // Returns coords
 
-    string getType(); 
+    string getType();
 
-    bool isLegal(const Coordinate& c); // Checks if a move is legal
-    
+    bool isLegal(Coordinate& c); // Checks if a move is legal
+
     virtual ~Piece() = 0;
 };
 

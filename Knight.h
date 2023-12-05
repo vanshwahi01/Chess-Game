@@ -1,7 +1,7 @@
 #ifndef ___KNIGHT___
 #define ___KNIGHT___
 #include <vector>
-#include "Piece.h"
+#include "piece.h"
 
 
 using namespace std;
@@ -9,9 +9,9 @@ using namespace std;
 
 class Knight: public Piece {
 public:
-    Knight(Coordinate c, Colour colour, Board b, string type);
+    Knight(Coordinate c, Colour colour, Board b);
 
-    vector<Coordinate> possibleMoves(Board& b, Piece& p, Coordinate& c) override; // Returns a vector of availble moves
+    vector<Coordinate> possibleMoves(const Board& b, const Piece& p, const Coordinate& c) override; // Returns a vector of availble moves
 };
 
 #endif
