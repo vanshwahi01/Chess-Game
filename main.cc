@@ -165,7 +165,8 @@ int main() {
                                         //checking white King
                                         //Figure out where both Kings are
                                         Coordinate whiteK = whiteKCoord(b), blackK = blackKCoord(b);
-                                        if (b.getPiece(whiteK).isChecked(b)){
+                                        King* k = b.getPiece(whiteK);
+                                        if (k->isChecked(b)){
 
                                                 cout << "Your white King is in a checked position, please move it somewhere else" << endl;
                                                 //display the board
@@ -186,7 +187,8 @@ int main() {
                                                 b.move(whiteK, getCoordinate(position));
 
                                         }
-                                        if(b.getPiece(blackK)->isChecked(b)){
+                                        King* bk = b.getPiece(blackK);
+                                        if(bk->isChecked(b)){
                                                 cout << "Your black King is in a checked position, please move it somewhere else" << endl;
                                                 //display the board
                                                 cout << b;
@@ -251,7 +253,7 @@ int main() {
                         if(temp){ // if player 1 is a computer i.e. dynamic cast worked
 
                                 if(pLevel == 1){
-                                        p1->randomPiece(b);
+                                        cp1->randomPiece(b);
 
                                 }
                                 else if (pLevel == 2){
@@ -267,7 +269,7 @@ int main() {
 
                         if(temp2){
                                 if(p2Level == 1){
-                                        p2->randomPiece(b);
+                                        cp2->randomPiece(b);
                                         //level 1 move function: get a random index of pieces vector, check if its the right colour, get random index of possible moves vector
 
                                        // b.move(getCoordinate(position), getCoordinate(endPosition));
@@ -279,7 +281,8 @@ int main() {
                                 b.move(getCoordinate(position), getCoordinate(endPosition));
                         }
 
-                        if(b.getPiece(whiteKCoord(b))->possibleMoves(b, b.getPiece(whiteKCoord(b)), whiteKCoord(b)).empty()){ //whiteK was checkmated
+                        Piece pie = b.getPiece(whiteKCoord(b));
+                        if(pie.possibleMoves(b, pie, whiteKCoord(b)).empty()){ //whiteK was checkmated
                                 p2->incScore();
                                 cout << "Game over: Black wins";
                                 //display the board
@@ -287,7 +290,8 @@ int main() {
                                 break;
 
                         }
-                        if(b.getPiece(blackKCoord(b))->possibleMoves(b, b.getPiece(blackKCoord(b)), blackKCoord(b)).empty()){ //blackK was checkmated
+                        pie = b.getPiece(blackKCoord(b));
+                        if(pie.possibleMoves(b, pie, blackKCoord(b)).empty()){ //blackK was checkmated
                                 p1->incScore();
                                 cout << "Game over: White wins";
                                 //display the board
@@ -313,6 +317,9 @@ int main() {
                         if(curPlayer == Colour::White){
                                 curPlayer = Colour::Black;
                         } else curPlayer = Colour::White;
+
+                        delete temp;
+                        delete temp2;
                 }
                  else {
                         //possible typo
