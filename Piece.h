@@ -38,7 +38,7 @@ public:
 
     string getType();
 
-    bool isLegal(Coordinate& c); // Checks if a move is legal
+    bool isLegal(const Coordinate& c); // Checks if a move is legal
 
     virtual ~Piece() = 0;
 };

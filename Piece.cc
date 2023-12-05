@@ -27,7 +27,7 @@ string Piece::getType() {
     return type;
 }
 
-bool Piece::isLegal(Coordinate& c) {
+bool Piece::isLegal(const Coordinate& c) {
     Coordinate whiteK, blackK;
     for(auto p: curBoard.getPieces()) {
         if(p->getType() == "King" && p->getColour() == Colour::White) {

@@ -5,12 +5,7 @@
 #include <vector>
 #include "Piece.h"
 #include "textdisplay.h"
-#include "King.h"
-#include "Queen.h"
-#include "Bishop.h"
-#include "Knight.h"
-#include "Rook.h"
-#include "Pawn.h"
+
 
 class Piece;
 class TextDisplay;
