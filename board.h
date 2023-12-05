@@ -15,7 +15,8 @@ class Xwindow; // if we have time
 
 class Board {
     vector<Piece*> p; 
-    Piece **board;
+    //Piece **board;
+    vector<vector<Piece*>> board;
     bool playerTurn;
     Textdisplay *td;
     Xwindow *xw;

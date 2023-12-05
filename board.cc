@@ -7,17 +7,11 @@ using namespace std;
 Board::Board() : {} 
 
 Board::Board(vector<Piece*> p, Piece **board, bool playerTurn, Textdisplay *td, Xwindow *xw) : p(p), board(board), playerTurn(playerTurn), td(td), xw(xw) {
-    board = new Piece*[32];
-    for (int i = 0; i < 32; i++) {
-        board[i] = new Piece[32];
-    }
+    vector<vector<Piece*>> board(8, vector<Piece*>(8, nullptr));
 }
 
 Board::~Board() {
-    for (int i = 0; i < 32; i++) {
-        delete [] board[i];
-    }
-    delete [] board;
+    board.clear();
 }
 
 bool Board::isOccupied(const Board& b, const Coordinate& c) {
