@@ -1,6 +1,6 @@
 #include "board.h"
 #include "player.h"
-#include "piece.h"
+#include "Piece.h"
 #include "computer.h"
 #include "coordinate.h"
 #include "King.h"
