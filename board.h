@@ -4,14 +4,11 @@
 #include <string>
 #include <vector>
 #include "Piece.h"
-
-using namespace std;
+#include "textdisplay.h"
 
 class Piece;
-class Player;
-//class Coordinate;
-class TextDisplay;
-class Xwindow; // if we have time
+
+using namespace std;
 
 enum Colour {Black, White};
 
