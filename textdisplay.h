@@ -8,7 +8,7 @@ using namespace std;
 int sizeboard = 8;
 
 class TextDisplay {
-    char **theDisplay;
+    vector<vector<chartheDisplay>>;
     public:
     TextDisplay();
     ~TextDisplay();

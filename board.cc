@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Board::Board(Textdisplay *td) : p{vector<Piece*>(0)}, board{vector<vector<Piece*>> board(8, vector<Piece*>(8, nullptr))}, td(td) {}
+Board::Board(Textdisplay *td) : p{vector<Piece*>(0)}, board{vector<vector<Piece*>>(8, vector<Piece*>(8, nullptr))}, td(td) {}
 
 Board::~Board() {
     p.clear();
