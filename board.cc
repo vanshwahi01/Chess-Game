@@ -11,7 +11,7 @@ Board::~Board() {
     delete td;
 }
 
-bool Board::isOccupied(Coordinate& c) {
+bool Board::isOccupied(Coordinate c) {
     return board[c.x][c.y] != nullptr;
 }
 

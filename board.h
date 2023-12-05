@@ -25,7 +25,7 @@ class Board {
         // default blank board constructor
         Board(TextDisplay *td);
         ~Board();
-        bool isOccupied(Coordinate& c);
+        bool isOccupied(Coordinate c);
         bool addPiece(const string type, const Coordinate c, const Colour colour, Board &b);
         vector<Piece*> getPieces();
         void removePiece(const Coordinate& c);
