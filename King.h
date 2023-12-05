@@ -1,3 +1,5 @@
+#ifndef ___KING___
+#define ___KING___
 #include <vector>
 #include "Piece.h"
 
@@ -15,3 +17,5 @@ public:
 
     bool willBeChecked(const Board& b, const Coordinate& c);
 };
+
+#endif
