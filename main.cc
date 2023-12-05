@@ -220,8 +220,8 @@ int main() {
                                         cout << "enter 'done' if you're done with set up" << endl;
                                 }
 
-                        }//done set up
-                }
+                        }
+                } //end of set up command
                 else if(command == "game") {
                         if(!didSetUp) {
                                 b.setUpNormal();
