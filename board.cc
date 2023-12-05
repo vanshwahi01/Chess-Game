@@ -25,40 +25,37 @@ bool Board::isOccupied(const Board& b, const Coordinate& c) {
 }
 
 void addPiece(const string type, const Coordinate c, const Colour colour, Board &b){
+        if(c->x < 0 || c->x > 7 || c->y < 0 || c->y > 7) return; // Validate coordinate
         string name;
         if(type == "K") { //if we're adding a King
-                King temp {c, colour, b, "King"};
+            if(b->isOccupied(c)) removePiece(c);
+            King temp = new King{c, colour, b, "King"};
         }
         else if(type == "Q"){ // if we're adding a Queen
-                Queen temp {c, colour,b, "Queen"};
+            if(b->isOccupied(c)) removePiece(c);
+            Queen temp = new Queen{c, colour,b, "Queen"};
         }
         else if(type == "B") { // if we're adding a Bishop
-                Bishop temp {c, colour, b, "Bishop"};
+            if(b->isOccupied(c)) removePiece(c);
+            Bishop temp = new Bishop{c, colour, b, "Bishop"};
         }
         else if(type == "R"){ // if we're adding a Rook
-                Rook temp {c, colour,b, "Rook"};
+            if(b->isOccupied(c)) removePiece(c);
+            Rook temp = new Rook{c, colour,b, "Rook"};
         }
         else if(type == "N") { // if we're adding a Knight
-                Knight temp {c, colour, b, "Knight"};
+            if(b->isOccupied(c)) removePiece(c);
+            Knight temp = new Knight{c, colour, b, "Knight"};
         }
         else if(type == "P"){ // if we're adding a Pawn
-                Pawn temp {c, colour,b, "Pawn"};
+            if(b->isOccupied(c)) removePiece(c);
+            Pawn temp = new Pawn{c, colour,b, "Pawn"};
         }
         else {
-                return; // don't do anything if valid type wasn't given
-        }
-        //checking if another piece already exists on this coordinate
-        for(auto p : b->pieces) {
-                //if this new piece is being added on a coordinate that already has a piece, new piece replaces old piece
-                if(p->getCoords() == c) {
-                        p = temp;
-                        //SAHIB GET THE ASSIGNMENT OPERATOR
-                        //leave function
-                        return;
-                }
+            return; // don't do anything if valid type wasn't given
         }
         //adds piece to the vector of pieces
-        b->getPieces().push_back(temp); //need to change to setPiece cause pieces vector is private
+        p.push_back(&temp); //need to change to setPiece cause pieces vector is private
 }
 
 vector<Coordinate> Board::getPieces(Coordinate c) {
