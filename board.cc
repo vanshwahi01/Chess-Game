@@ -67,7 +67,6 @@ vector<Coordinate> Board::getPieces(Coordinate c) {
 
 void Board::removePiece(Coordinate c) {
     delete board[c.x][c.y];
-    board[c.x][c.y] = nullptr;
 }
 
 void Board::move(Coordinate c1, Coordinate c2) {
