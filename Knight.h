@@ -1,7 +1,7 @@
 #ifndef ___KNIGHT___
 #define ___KNIGHT___
 #include <vector>
-#include "Piece.h"
+#include "piece.h"
 
 
 using namespace std;

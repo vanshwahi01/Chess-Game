@@ -1,7 +1,7 @@
 #ifndef ___PAWN___
 #define ___PAWN___
 #include <vector>
-#include "Piece.h"
+#include "piece.h"
 
 
 using namespace std;

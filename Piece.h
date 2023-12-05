@@ -2,7 +2,7 @@
 #define ___PIECE___
 
 #include <vector>
-#include "Coordinate.h"
+#include "coordinate.h"
 
 using namespace std;
 

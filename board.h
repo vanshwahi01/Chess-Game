@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include "Piece.h"
+#include "piece.h"
 
 using namespace std;
 
