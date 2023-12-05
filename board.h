@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include "piece.h"
+#include "Piece.h"
 
 using namespace std;
 
@@ -23,7 +23,7 @@ class Board {
 
     public:
         // default blank board constructor
-        Board(Textdisplay *td);
+        Board(TextDisplay *td);
         ~Board();
         bool isOccupied(Coordinate& c);
         bool addPiece(const string type, const Coordinate c, const Colour colour, Board &b);

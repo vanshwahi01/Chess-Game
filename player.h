@@ -9,9 +9,10 @@ using namespace std;
 //enum Colour {White = 0, Black = 1};
 
 class Player {
-        Colour colour = Colour::White;
-        int score = 0;
-        int totalPieces = 0;
+        protected:
+                Colour colour = Colour::White;
+                int score = 0;
+                int totalPieces = 0;
         public:
                 Player(Colour c);
                 int getScore();
@@ -19,6 +20,7 @@ class Player {
                 void incScore();
                 int getTotalPieces();
                 void draw();
+                
 
 };
 

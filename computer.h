@@ -6,6 +6,7 @@ using namespace std;
 class Computer : public Player {
         int level = 1;
         int totalPieces = 0;
+        
         public:
                 Computer();
                 int getLevel();
