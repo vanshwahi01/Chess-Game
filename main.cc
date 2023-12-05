@@ -90,7 +90,7 @@ int main() {
                                                 cout << "You can try adding the pawn in a valid position." << endl;
                                         }
                                         else if(piece != "K") {
-                                                if(addPiece(piece, getCoordinate(position), curPlayer, b)){}
+                                                if(addPiece(piece, getCoordinate(position), curPlayer, b)){
                                                         if(curPlayer == Colour::White) p1->incTotalPieces();
                                                         else p2->incTotalPieces();
                                                 }
