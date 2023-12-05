@@ -1,3 +1,5 @@
+#ifndef ___ROOK___
+#define ___ROOK___
 #include <vector>
 #include "Piece.h"
 
@@ -11,3 +13,5 @@ public:
 
     vector<Coordinate> possibleMoves(const Board& b, const Piece& p, const Coordinate& c) override; // Returns a vector of availble moves
 };
+
+#endif
