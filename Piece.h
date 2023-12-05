@@ -2,15 +2,18 @@
 #define ___PIECE___
 
 #include <vector>
-#include "coordinate.h"
+#include "Coordinate.h"
+#include "Board.h"
 
 using namespace std;
 
+/*
 class Board {
     int x;
-Public:
+public:
     Board();
 };
+*/
 
 enum Colour {Black, White};
 
