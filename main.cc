@@ -69,6 +69,8 @@ int main() {
 
         Player* p1{Colour::White};
         Player* p2{Colour::Black};
+        Computer* cp1 = static_cast<Computer*>(p1);
+        Computer* cp2 = static_cast<Computer*>(p2);
         //for checking specs
         int numWhiteK, numBlackK;
         string position;
@@ -219,6 +221,7 @@ int main() {
                         }
                 } //end of set up command
                 else if(command == "game") {
+                        
                         if(!didSetUp) {
                                 b.setUpNormalBoard();
                         }
@@ -229,7 +232,6 @@ int main() {
                                 istringstream iss{white_player};
                                 char level;
                                 for(int i = 0; i < 10; i++){iss >> level;}
-                                Computer* cp1 = static_cast<Computer*>(p1);
                                 cp1->setLevel(level - '0');
 
                         }
@@ -237,7 +239,6 @@ int main() {
                                 istringstream iss{black_player};
                                 char level;
                                 for(int i = 0; i < 10; i++){iss >> level;}
-                                Computer* cp2 = static_cast<Computer*>(p2);
                                 cp2->setLevel(level - '0');
 
                         }
@@ -331,4 +332,11 @@ int main() {
 
 
         }//end of while
+
+        delete td;
+        delete p1;
+        delete p2;
+        delete cp1;
+        delete cp2;
+        
 }//end of main
