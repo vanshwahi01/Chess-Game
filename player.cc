@@ -2,13 +2,13 @@
 
 using namespace std;
 
-Player::Player(Colour colour) : colour{colour}//waiting to figure out how pieces are declared
+Player::Player(Colour colour) : colour{colour} {} //waiting to figure out how pieces are declared
 
 int Player::getScore() {
         return score;
 }
 
-int Player::getColour() {
+Colour Player::getColour() {
         return colour;
 }
 
