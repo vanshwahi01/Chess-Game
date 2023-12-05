@@ -309,8 +309,8 @@ int main() {
                                                 break;
                                         } 
                                         isStalemate = true; //if the if statement is never triggered, the opponent has no possible moves i.e. stalemate
+                                }
                         }
-}
                         if(isStalemate){ // Add second condition of stalemate (insufficent material)
                                 p1->draw();
                                 p2->draw();
