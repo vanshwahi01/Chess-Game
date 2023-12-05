@@ -1,5 +1,5 @@
 #ifndef COORDINATE_H
-#define COORDIATE_H
+#define COORDINATE_H
 using namespace std;
 
 class Coordinate {
