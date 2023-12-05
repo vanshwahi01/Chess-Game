@@ -1,6 +1,6 @@
 #include <vector>
 #include <string>
-#include "piece.h"
+#include "Piece.h"
 #include "board.h"
 
 using namespace std;

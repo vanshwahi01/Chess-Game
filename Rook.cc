@@ -1,5 +1,4 @@
 #include <vector>
-#include "piece.h"
 #include "Rook.h"
 
 using namespace std;

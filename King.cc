@@ -1,5 +1,5 @@
 #include <vector>
-#include "piece.h"
+#include "King.h"
 
 using namespace std;
 

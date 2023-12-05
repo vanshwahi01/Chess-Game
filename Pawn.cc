@@ -1,5 +1,4 @@
 #include <vector>
-#include "piece.h"
 #include "Pawn.h"
 #include "board.h"
 

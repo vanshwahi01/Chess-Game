@@ -1,7 +1,7 @@
 #ifndef ___QUEEN___
 #define ___QUEEN___
 #include <vector>
-#include "piece.h"
+#include "Piece.h"
 
 
 using namespace std;

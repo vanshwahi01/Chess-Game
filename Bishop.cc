@@ -1,6 +1,5 @@
 #include <vector>
 #include <string>
-#include "piece.h"
 #include "Bishop.h"
 
 using namespace std;

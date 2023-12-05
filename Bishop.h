@@ -1,7 +1,7 @@
 #ifndef ___BISHOP___
 #define ___BISHOP___
 #include <vector>
-#include "piece.h"
+#include "Piece.h"
 
 
 using namespace std;

@@ -1,7 +1,7 @@
 #ifndef ___ROOK___
 #define ___ROOK___
 #include <vector>
-#include "piece.h"
+#include "Piece.h"
 
 
 using namespace std;

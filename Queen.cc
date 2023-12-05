@@ -1,6 +1,5 @@
 #include <vector>
 #include <string>
-#include "piece.h"
 #include "Queen.h"
 
 using namespace std;
