@@ -2,6 +2,7 @@
 #define __TEXTDISPLAY__
 #include <string>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // constant size of board
