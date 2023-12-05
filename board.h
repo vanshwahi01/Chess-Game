@@ -7,6 +7,7 @@
 #include "textdisplay.h"
 
 class Piece;
+class TextDisplay;
 
 using namespace std;
 
