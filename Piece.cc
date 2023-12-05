@@ -1,5 +1,6 @@
 #include <vector>
-#include "piece.h"
+#include <string>
+#include "Piece.h"
 
 using namespace std;
 
@@ -51,6 +52,7 @@ void Piece::setCoords(const Coordinate& c) {
     coords = c;
 }
 
+/*
 Board::Board() : x{0} {}
 
 Coordinate::Coordinate() : x{0}, y{0} {}
@@ -61,3 +63,4 @@ bool Coordinate::operator==(const Coordinate& other) {
     if(this->x == other.x && this->y == other.y) return true;
     return false;
 }
+*/
