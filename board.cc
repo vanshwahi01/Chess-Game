@@ -47,10 +47,11 @@ bool addPiece(const string type, const Coordinate c, const Colour colour, Board 
         }
         p.push_back(&temp); // adds piece to the vector of pieces
         board[c.x][c.y] = &temp;
+        td->notify()
         return true;
 }
 
-vector<Coordinate> Board::getPieces() {
+vector<Piece*> Board::getPieces() {
     return p;
 }
 

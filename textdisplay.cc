@@ -21,8 +21,8 @@ TextDisplay::~TextDisplay() {
   theDisplay.clear();
 }
 
-void TextDisplay::notify(char ch, int r, int c) {
-    theDisplay[r][c] = ch;
+void TextDisplay::notify(char ch, const Coordinate c) {
+    theDisplay[c->x][c->y] = ch;
 }
 
 // ostream &operator<<(ostream &out, const TextDisplay &td) {
