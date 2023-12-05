@@ -1,5 +1,5 @@
-#ifndef COMPUTER_H
-#define COMPUTER_H
+#ifndef _COMPUTER_H
+#define _COMPUTER_H
 #include "player.h"
 using namespace std;
 
