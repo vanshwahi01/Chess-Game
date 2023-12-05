@@ -1,6 +1,6 @@
 #ifndef _PLAYER_H
 #define _PLAYER_H
-#include "pieces.h"
+#include "Piece.h"
 
 
 using namespace std;
@@ -9,13 +9,13 @@ using namespace std;
 //enum Colour {White = 0, Black = 1};
 
 class Player {
-        Colour c = Colour::White;
+        Colour colour = Colour::White;
         int score = 0;
         int totalPieces = 0;
         public:
                 Player(Colour c);
                 int getScore();
-                int getColour();
+                Colour getColour();
                 void incScore();
                 int getTotalPieces();
                 void draw();
