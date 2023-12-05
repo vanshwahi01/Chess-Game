@@ -30,6 +30,7 @@ class Board {
         bool move(const Coordinate& c1, const Coordinate& c2);
         Piece *getPiece(const Coordinate& c); // returning pointer to piece check it
         void setUpNormalBoard(); // setting up a basic chess board
+        friend std::ostream &operator<<(std::ostream &out, const Board& b);
 };
 
 #endif

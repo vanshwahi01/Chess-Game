@@ -208,4 +208,9 @@ void setUpNormalBoard() {
     }
 }
 
+ostream &operator<<(ostream &out, const Board& b) {
+  out << b.td;
+  return out;
+}
+
 
