@@ -8,7 +8,7 @@ class Coordinate {
                 Coordinate(int x, int y);
                 int x = 0;
                 int y = 0;
-                operator==(const Coordinates& other);
+                bool operator==(const Coordinate& other);
 };
 
 #endif
