@@ -142,7 +142,7 @@ int main() {
                                                 cin >> position;
                                                // King temp {c, Colour::Black, *b, "King"};
                                                 if((getCoordinate(position).x < 0) || (getCoordinate(position).x > 7)|| (getCoordinate(position).y > 0)|| (getCoordinate(position).y > 7)){//temp.isLegal(getCoordiante(position))){
-                                                        b.("K", getCoordinate(position), Colour::Black, b)
+                                                        b.addPiece("K", getCoordinate(position), Colour::Black, b);
                                                 } else{
                                                         cout << "That isn't a legal position for the King, please provide an alternate position" << endl;
                                                 }
@@ -338,5 +338,5 @@ int main() {
         delete p2;
         delete cp1;
         delete cp2;
-        
+
 }//end of main

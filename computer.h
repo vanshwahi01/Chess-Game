@@ -16,6 +16,6 @@ class Computer : public Player {
                 //get a random index
                 //the piece at that random index will be the piece that is chosen to be played
 
-}
+};
 
 #endif

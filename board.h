@@ -3,14 +3,14 @@
 
 #include <string>
 #include <vector>
-#include "Piece.h"
+#include "piece.h"
 
 using namespace std;
 
 class Piece;
 class Player;
-class Coordinate;
-class Textdisplay;
+//class Coordinate;
+class TextDisplay;
 class Xwindow; // if we have time
 
 enum Colour {Black, White};
@@ -18,7 +18,7 @@ enum Colour {Black, White};
 class Board {
     vector<Piece*> p;
     vector<vector<Piece*>> board;
-    Textdisplay *td;
+    TextDisplay *td;
     //Xwindow *xw;
 
     public:
