@@ -1,15 +1,6 @@
 #include "board.h"
 #include "player.h"
-#include "Piece.h"
 #include "computer.h"
-#include "coordinate.h"
-#include "King.h"
-#include "Queen.h"
-#include "Bishop.h"
-#include "Knight.h"
-#include "Rook.h"
-#include "Pawn.h"
-#include "textdisplay.h"
 
 #include <iostream>
 #include <vector>

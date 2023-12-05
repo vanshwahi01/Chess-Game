@@ -5,6 +5,12 @@
 #include <vector>
 #include "Piece.h"
 #include "textdisplay.h"
+#include "King.h"
+#include "Queen.h"
+#include "Bishop.h"
+#include "Knight.h"
+#include "Rook.h"
+#include "Pawn.h"
 
 class Piece;
 class TextDisplay;
@@ -23,10 +29,10 @@ class Board {
         // default blank board constructor
         Board(TextDisplay *td);
         ~Board();
+        void removePiece(const Coordinate& c);
         bool isOccupied(Coordinate c);
         bool addPiece(const string type, const Coordinate c, const Colour colour, Board &b);
         vector<Piece*> getPieces();
-        void removePiece(const Coordinate& c);
         bool move(const Coordinate& c1, const Coordinate& c2);
         Piece *getPiece(const Coordinate& c); // returning pointer to piece check it
         void setUpNormalBoard(); // setting up a basic chess board

@@ -5,7 +5,7 @@ using namespace std;
 
 Knight::Knight(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour, b, type} {}
 
-vector<Coordinate> Knight::possibleMoves(const Board& b, const Piece& p, const Coordinate& c) {
+vector<Coordinate> Knight::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     vector<Coordinates> pMoves(0);
 
     if(!b.isOccupied({c.x - 2, c.y + 1}) || getPiece({c.x - 2, c.y + 1}).getColour() != p.getColour()) { // 1 up 2 left

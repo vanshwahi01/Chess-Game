@@ -27,7 +27,7 @@ bool King::willBeChecked(const Board& b, const Coordinate& c) {
     return false;
 }
 
-vector<Coordinate> King::possibleMoves(const Board& b, const Piece& p, const Coordinate& c) {
+vector<Coordinate> King::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     vector<Coordinates> pMoves[0];
 
     if((c->x - 1 > -1 && c->y + 1 < 8 && b->isOccupied({c->x - 1, c->y + 1}) && b->getPiece.getColour() != p.getColour()) || !b->isOccupied({c->x - 1, c->y + 1})) { // Left forward diagnol

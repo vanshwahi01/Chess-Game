@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Board::Board(Textdisplay *td) : p{vector<Piece*>(0)}, board{vector<vector<Piece*>>(8, vector<Piece*>(8, nullptr))}, td(td) {}
+Board::Board(TextDisplay *td) : p{vector<Piece*>(0)}, board{vector<vector<Piece*>>(8, vector<Piece*>(8, nullptr))}, td(td) {}
 
 Board::~Board() {
     p.clear();
@@ -15,41 +15,41 @@ bool Board::isOccupied(Coordinate c) {
     return board[c.x][c.y] != nullptr;
 }
 
-bool addPiece(const string type, const Coordinate c, const Colour colour, Board &b){
-        if(c->x < 0 || c->x > 7 || c->y < 0 || c->y > 7) return; // Validate coordinate
+bool Board::addPiece(const string type, const Coordinate c, const Colour colour, Board &b){
+        if(c.x < 0 || c.x > 7 || c.y < 0 || c.y > 7) return false; // Validate coordinate
         if(type == "K") { //if we're adding a King
             if(b.isOccupied(c)) removePiece(c);
-            King temp = new King{c, colour, b, "King"};
+            King* temp = new King{c, colour, b, "King"};
             if(colour == Colour::Black) td->notify('k', c);
             else td->notify('K', c);
         }
         else if(type == "Q"){ // if we're adding a Queen
             if(b.isOccupied(c)) removePiece(c);
-            Queen temp = new Queen{c, colour,b, "Queen"};
+            Queen* temp = new Queen{c, colour,b, "Queen"};
             if(colour == Colour::Black) td->notify('q', c);
             else td->notify('Q', c);
         }
         else if(type == "B") { // if we're adding a Bishop
             if(b.isOccupied(c)) removePiece(c);
-            Bishop temp = new Bishop{c, colour, b, "Bishop"};
+            Bishop* temp = new Bishop{c, colour, b, "Bishop"};
             if(colour == Colour::Black) td->notify('b', c);
             else td->notify('B', c);
         }
         else if(type == "R"){ // if we're adding a Rook
             if(b.isOccupied(c)) removePiece(c);
-            Rook temp = new Rook{c, colour,b, "Rook"};
+            Rook* temp = new Rook{c, colour,b, "Rook"};
             if(colour == Colour::Black) td->notify('r', c);
             else td->notify('R', c);
         }
         else if(type == "N") { // if we're adding a Knight
             if(b.isOccupied(c)) removePiece(c);
-            Knight temp = new Knight{c, colour, b, "Knight"};
+            Knight* temp = new Knight{c, colour, b, "Knight"};
             if(colour == Colour::Black) td->notify('n', c);
             else td->notify('N', c);
         }
-        else if(type == "P"){ // if we're adding a Pawn
+        else if(type == "P"){  // if we're adding a Pawn
             if(b.isOccupied(c)) removePiece(c);
-            Pawn temp = new Pawn{c, colour,b, "Pawn"};
+            Pawn* temp = new Pawn{c, colour,b, "Pawn"};
             if(colour == Colour::Black) td->notify('p', c);
             else td->notify('P', c);
         }
