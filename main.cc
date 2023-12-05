@@ -340,12 +340,14 @@ int main() {
 
                         bool isStalemate = false;
                         for(auto p: b->getPieces()) {
-                                if(!p->possibleMoves().empty()) {
-                                        isStalemate = false;
-                                        break;
-                                } 
-                                isStalemate = true;
+                                 if(p->getColour() != curPlayer) { // opposing player's colour
+                                        if(!p->possibleMoves().empty()) {//possible moves of opponent's pieces - if it's not empty you have moves so there's no stalemate
+                                                isStalemate = false;
+                                                break;
+                                        } 
+                                        isStalemate = true; //if the if statement is never triggered, the opponent has no possible moves i.e. stalemate
                         }
+}
                         if(isStalemate){ // Add second condition of stalemate (insufficent material)
                                 p1->draw();
                                 p2->draw();
