@@ -84,32 +84,41 @@ Piece *Board::getPiece(Coordinate c) {
 
 void setUpNormalBoard() {
     ~Board();
-    board = new Piece*[32];
+    board = new Piece*[64];
     // Black pieces
-    board[0] = new Rook(0, Colour::Black, p); 
-	board[1] = new Knight(1, Colour::Black, p);
-	board[2] = new Bishop(2, colour::Black, p);
-	board[3] = new Queen(3, Colour::Black, p);
-    board[4] = new King(4, Colour::Black, p);
-	board[5] = new Bishop(5, Colour::Black, p);
-	board[6] = new Knight(6, Colour::Black, p);
-	board[7] = new Rook(7, Colour::Black, p);
-    for (int i = 8; i < 16; ++i) {
-        board[i] = new Pawn(i, Colour::Black, p); // row of pawns
+    board[0] = new Rook({0,0}, Colour::Black, p); 
+	board[1] = new Knight({1,0}, Colour::Black, p);
+	board[2] = new Bishop({2,0}, Colour::Black, p);
+    board[3] = new King({3,0}, Colour::Black, p);
+    board[4] = new Queen({4,0}, Colour::Black, p);
+	board[5] = new Bishop({5,0}, Colour::Black, p);
+	board[6] = new Knight({6,0}, Colour::Black, p);
+	board[7] = new Rook({7,0}, Colour::Black, p);
+    int j = 8;
+    for (int i = 0; i < 8; ++i) {
+        board[j] = new Pawn({i,0}, Colour::Black, p); // row of pawns
+        j++;
     }
-    for(int i = 16; i < 24; ++i) {
-        board[i] = new Pawn(i, Colour::White, p); // row of pawns
-    }
-    // White pieces
-    board[24] = new Rook(24, Colour::White, p);
-    board[25] = new Knight(25, Colour::White, p);
-    board[26] = new Bishop(26, Colour::White, p);
-    board[27] = new Queen(27, Colour::White, p);
-    board[28] = new King(28, Colour::White, p);
-    board[29] = new Bishop(29, Colour::White, p);
-    board[30] = new Knight(30, Colour::White, p);
-    board[31] = new Rook(31, Colour::White, p);
-}
 
+    for(int i = 16; i < 48; ++i) {
+        board[i] = nullptr; // empty spaces
+    }
+    
+    j = 48;
+    for(int i = 0; i < 8; ++i) {
+        board[j] = new Pawn({i,7}, Colour::White, p); // row of pawns
+        j++;
+    }
+
+    // White pieces
+    board[56] = new Rook({0,7}, Colour::White, p);
+    board[57] = new Knight({1,7}, Colour::White, p);
+    board[58] = new Bishop({2,7}, Colour::White, p);
+    board[59] = new Queen({3,7}, Colour::White, p);
+    board[60] = new King({4,7}, Colour::White, p);
+    board[61] = new Bishop({5,7}, Colour::White, p);
+    board[62] = new Knight({6,7}, Colour::White, p);
+    board[63] = new Rook({7,7}, Colour::White, p);
+}
 
 
