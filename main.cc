@@ -262,11 +262,8 @@ int main() {
                         if(temp){ // if player 1 is a computer i.e. dynamic cast worked
                                         
                                 if(pLevel == 1){
-                                       
                                         p1->randomPiece(b);
                                         
-                                        
-                                      
                                 }
                                 else if (pLevel == 2){
 
@@ -283,17 +280,13 @@ int main() {
                                 if(level 1){
                                         level 1 move function: get a random index of pieces vector, check if its the right colour, get random index of possible moves vector
                                         
-                                        
-                                        
                                         b->move(getCoordinate(position), getCoordinate(endPosition));
                                 }
-                                
                         }
 
                         else{//p2 is a human
                                 cin << position << endPosition;
                                 b->move(position, endPosition);
-
                         }
 
                         if(getPiece(whiteKCoords(b))->possibleMoves(b, getPiece(whiteKCoords(b)), whiteKCoords(b)).empty()){ //whiteK was checkmated
