@@ -1,5 +1,5 @@
-#ifndef __TEXTDISPLAY_H__
-#define __TEXTDISPLAY_H__
+#ifndef __TEXTDISPLAY__
+#define __TEXTDISPLAY__
 #include <string>
 #include <iostream>
 using namespace std;
