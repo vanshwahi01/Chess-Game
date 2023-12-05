@@ -43,14 +43,14 @@ Coordinate getCoordinate(string c){
 }
 
 Coordinate whiteKCoord(Board &b) {
-        for(auto p : b->pieces) {
+        for(auto p : b->getPieces()) {
                 if(p->getType() == "King" && p->getColour() == Colour::White) {
                         return p->getCoords();
                 }
         }
 }
 Coordinate blackKCoord(Board &b) {
-        for(auto p : b->pieces) {
+        for(auto p : b->getPieces()) {
                 if(p->getType() == "King" && p->getColour() == Colour::Black) {
                         return p->getCoords();
                 }
@@ -59,7 +59,8 @@ Coordinate blackKCoord(Board &b) {
 
 int main() {
 
-        Board b; // this is blank board
+        TextDisplay* td = new TextDisplay();
+        Board b {td}; // this is blank board
         Colour curPlayer= Colour::White;
         string command;
         bool gameStarted = false;
@@ -179,7 +180,7 @@ int main() {
                                                 
                                                 cout << "Your white King is in a checked position, please move it somewhere else" << endl;
                                                 //display the board
-                                                printBoard();
+                                                cout << b;
                                                 
 
                                                 cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
@@ -188,6 +189,7 @@ int main() {
                                                 while(!b->getPiece(whiteK)->isLegal(getCoordinate(position))) {
                                                         cout << "Your white King is in a checked position, please move it somewhere else" << endl;
                                                         //display the board
+                                                        cout <<b;
                                                         cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
                                                         cin << position;
                                                 }
@@ -198,11 +200,13 @@ int main() {
                                         if(b->getPiece(blackK).isChecked(b)){
                                                 cout << "Your black King is in a checked position, please move it somewhere else" << endl;
                                                 //display the board
+                                                cout << b;
                                                 cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
                                                 cin << position;
                                                 while(!b->getPiece(blackK)->isLegal(getCoordinate(position))) {
                                                         cout << "Your black King is in a checked position, please move it somewhere else" << endl;
                                                         //display the board
+                                                        cout << b;
                                                         cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
                                                         cin << position;
                                                 }
@@ -229,7 +233,7 @@ int main() {
                                 istringstream iss{white-player};
                                 char level;
                                 for(int i = 0; i < 10; i++){iss >> level;}
-                                dynamic_pointer_cast<Computer>(p1);
+                                static_cast<Computer>(p1);
                                 p1->setLevel(level - '0');
 
                         }
@@ -237,7 +241,7 @@ int main() {
                                 istringstream iss{black-player};
                                 char level;
                                 for(int i = 0; i < 10; i++){iss >> level;}
-                                dynamic_pointer_cast<Computer>(p2);
+                                static_cast<Computer>(p2);
                                 p2->setLevel(level - '0');
 
                         }
@@ -252,14 +256,19 @@ int main() {
                         cout << "----- Game finished -------" << endl;
                 }
                 else if (command == "move"){
-                        
-                        if(p1 is a computer){
+                       Player* temp = dynamic_cast<Computer*>(p1);
+                        Player* temp2 = dynamic_cast<Computer*>(p2);
+                        int pLevel = p1->getLevel();
+                        if(temp){ // if player 1 is a computer i.e. dynamic cast worked
                                         
-                                if(level 1){
-                                        level 1 move function: get a random index of pieces vector, check if its the right colour, get random index of possible moves vector
-                                        b->move(getCoordinate(position), getCoordinate(endPosition));
+                                if(pLevel == 1){
+                                       
+                                        p1->randomPiece(b);
+                                        
+                                        
+                                      
                                 }
-                                else if (level 2){
+                                else if (pLevel == 2){
 
                                 }
                         }
@@ -270,20 +279,20 @@ int main() {
                         }
                         //black goes
                         
-                        if(p2 is a computer){
+                        if(temp2){
                                 if(level 1){
                                         level 1 move function: get a random index of pieces vector, check if its the right colour, get random index of possible moves vector
+                                        
+                                        
+                                        
                                         b->move(getCoordinate(position), getCoordinate(endPosition));
                                 }
-                                else if (level 2){
-
-                                }
+                                
                         }
 
                         else{//p2 is a human
                                 cin << position << endPosition;
                                 b->move(position, endPosition);
-
 
                         }
 
@@ -291,6 +300,7 @@ int main() {
                                 p2->incScore();
                                 cout << "Game over: Black wins";
                                 //display the board
+                                cout << b;
                                 break;
 
                         }
@@ -298,6 +308,7 @@ int main() {
                                 p1->incScore();
                                 cout << "Game over: White wins";
                                 //display the board
+                                cout << b;
                                 break;
                         }
 

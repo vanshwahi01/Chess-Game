@@ -10,7 +10,7 @@ class Computer : public Player {
                 Computer();
                 int getLevel();
                 void setLevel(int lev);
-                Piece randomPiece(); //returns a random piece
+                Piece randomPiece(const Board &b); //returns a random piece
                 void incTotalPieces();
                 //get a random index
                 //the piece at that random index will be the piece that is chosen to be played

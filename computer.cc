@@ -17,8 +17,25 @@ void setLevel(int lev){
     level = lev;
 }
 
-Piece Computer::randomPiece(){//will this give me an error saying totalPieces is not declared in this scope? It technically comes with it because it's a player... but idk
+Piece Computer::randomPiece(const Board& b){//will this give me an error saying totalPieces is not declared in this scope? It technically comes with it because it's a player... but idk
+        // srand((unsigned int)time(NULL));
+        // int randomIndex = rand() % totalPieces;//gives us a random index from 0 to whatever the total number of pieces is;
+        // return randomIndex;
+
+        vector<Piece*> temp = b->getPieces();
+        int totalPieces = temp.size() //total pieces
         srand((unsigned int)time(NULL));
         int randomIndex = rand() % totalPieces;//gives us a random index from 0 to whatever the total number of pieces is;
-        return randomIndex;
+        
+        while(true){
+                if(temp[randomIndex]->getColour() == curPlayer) break; // Keeps getting a random index
+                randomIndex = rand() % totalPieces;
+        }
+            
+        //get random index from possible moves
+        vector<Coordinate> pMoves = possibleMoves(b, temp[randomIndex], temp[randomIndex]->getCoords());
+        int numPossMoves = temp[randomIndex]->pMoves.size();
+        int possMovesIndex = rand() % numPossMoves;
+        
+        b->move(temp[randomIndex]->getCoords() , pMoves[possMovesIndex]);
 }
