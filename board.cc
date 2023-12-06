@@ -105,47 +105,47 @@ bool Board::move(const Coordinate& c1, const Coordinate& c2) { // c1 is start, c
         board[c2.x][c2.y] = temp;
         board[c1.x][c1.y] = nullptr;
         if(c1.x % 2 == 0) { // Replace the removed piece with the correct tile
-            if(c1.y % 2 == 0) td->notify('_', c1);
-            else td->notify(' ', c1);
+            if(c1.y % 2 == 0) td->notify('_', c1.x, c1.y);
+            else td->notify(' ', c1.x, c1.y);
         } else {
-            if(c1.y % 2 == 0) td->notify(' ', c1);
-            else td->notify('_', c1);
+            if(c1.y % 2 == 0) td->notify(' ', c1.x, c1.y);
+            else td->notify('_', c1.x, c1.y);
         }
 
         if(temp->getType() == "Pawn") {
             if(temp->getColour() == Colour::Black) {
-                td->notify('p', c2);
-            } else td->notify('P', c2);
+                td->notify('p', c2.x, c2.y);
+            } else td->notify('P', c2.x, c2.y);
         }
 
         if(temp->getType() == "Rook") {
             if(temp->getColour() == Colour::Black) {
-                td->notify('r', c2);
-            } else td->notify('R', c2);
+                td->notify('r', c2.x, c2.y);
+            } else td->notify('R', c2.x, c2.y);
         }
 
         if(temp->getType() == "Knight") {
             if(temp->getColour() == Colour::Black) {
-                td->notify('n', c2);
-            } else td->notify('K', c2);
+                td->notify('n', c2.x, c2.y);
+            } else td->notify('K', c2.x, c2.y);
         }
 
         if(temp->getType() == "Bishop") {
             if(temp->getColour() == Colour::Black) {
-                td->notify('b', c2);
-            } else td->notify('B', c2);
+                td->notify('b', c2.x, c2.y);
+            } else td->notify('B', c2.x, c2.y);
         }
 
         if(temp->getType() == "King") {
             if(temp->getColour() == Colour::Black) {
-                td->notify('k', c2);
-            } else td->notify('K', c2);
+                td->notify('k', c2.x, c2.y);
+            } else td->notify('K', c2.x, c2.y);
         }
 
         if(temp->getType() == "Queen") {
             if(temp->getColour() == Colour::Black) {
-                td->notify('q', c2);
-            } else td->notify('Q', c2);
+                td->notify('q', c2.x, c2.y);
+            } else td->notify('Q', c2.x, c2.y);
         }
 
         return true;
@@ -162,24 +162,24 @@ Piece* Board::getPiece(const Coordinate& c) {
 void Board::setUpNormalBoard() {
     // Black pieces
     board[0][0] = new Rook({0,0}, Colour::Black, *this, "Rook");
-    td->notify('r', {0, 0});
+    td->notify('r', 0, 0);
         board[1][0] = new Knight({1,0}, Colour::Black, *this, "Knight");
-    td->notify('n', {1, 0});
+    td->notify('n', 1, 0);
         board[2][0] = new Bishop({2,0}, Colour::Black, *this, "Bishop");
-    td->notify('b', {2, 0});
+    td->notify('b', 2, 0);
     board[3][0] = new King({3,0}, Colour::Black, *this, "King");
-    td->notify('k', {3, 0});
+    td->notify('k', 3, 0);
     board[4][0] = new Queen({4,0}, Colour::Black, *this, "Queen");
-    td->notify('q', {4, 0});
+    td->notify('q', 4, 0);
         board[5][0] = new Bishop({5,0}, Colour::Black, *this, "Bishop");
-    td->notify('b', {5, 0});
+    td->notify('b', 5, 0);
         board[6][0] = new Knight({6,0}, Colour::Black, *this, "Knight");
-    td->notify('n', {6, 0});
+    td->notify('n', 6, 0);
         board[7][0] = new Rook({7,0}, Colour::Black, *this, "Rook");
-    td->notify('r', {7, 0});
+    td->notify('r', 7, 0);
     for (int i = 0; i < 8; ++i) {
         board[i][1] = new Pawn({i,1}, Colour::Black, *this, "Pawn"); // row of pawns
-        td->notify('p', {i, 1});
+        td->notify('p', i, 1);
     }
     for(int j = 0; j < 2; j++) { // Adds two rows of pieces to vector
         for(int i = 0; i < 8; i++) {
@@ -189,26 +189,26 @@ void Board::setUpNormalBoard() {
 
     for(int i = 0; i < 8; ++i) {
         board[i][6] = new Pawn({i,6}, Colour::White, *this, "Pawn"); // row of pawns
-        td->notify('P', {i, 6});
+        td->notify('P', i, 6);
     }
 
     // White pieces
     board[0][7] = new Rook({0,7}, Colour::White, *this, "Rook");
-    td->notify('R', {0, 7});
+    td->notify('R', 0, 7);
     board[1][7] = new Knight({1,7}, Colour::White, *this, "Knight");
-    td->notify('N', {1, 7});
+    td->notify('N', 1, 7);
     board[2][7] = new Bishop({2,7}, Colour::White, *this, "Bishop");
-    td->notify('B', {2, 7});
+    td->notify('B', 2, 7);
     board[3][7] = new Queen({3,7}, Colour::White, *this, "Queen");
-    td->notify('K', {3, 7});
+    td->notify('K', 3, 7);
     board[4][7] = new King({4,7}, Colour::White, *this, "King");
-    td->notify('Q', {4, 7});
+    td->notify('Q', 4, 7);
     board[5][7] = new Bishop({5,7}, Colour::White, *this, "Bishop");
-    td->notify('B', {5, 7});
+    td->notify('B', 5, 7);
     board[6][7] = new Knight({6,7}, Colour::White, *this, "Knight");
-    td->notify('N', {6, 7});
+    td->notify('N', 6, 7);
     board[7][7] = new Rook({7,7}, Colour::White, *this, "Rook");
-    td->notify('R', {7, 7});
+    td->notify('R', 7, 7);
 
     for(int j = 6; j < 8; j++) { // Adds last two rows of pieces to vector
         for(int i = 0; i < 8; i++) {

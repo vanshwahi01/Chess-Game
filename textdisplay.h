@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "coordinate.h"
 using namespace std;
 
 // constant size of board
