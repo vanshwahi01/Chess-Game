@@ -204,6 +204,7 @@ int main() {
                         string white_player;
                         string black_player;
                         cin >> white_player >> black_player; //computer[1]
+                        cout << b;
                         if(white_player != "human") {
                                 istringstream iss{white_player};
                                 char level;
