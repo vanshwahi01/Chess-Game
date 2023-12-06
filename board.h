@@ -10,9 +10,9 @@
 class Piece;
 class TextDisplay;
 
-using namespace std;
+enum class Colour {Black, White};
 
-enum Colour {Black, White};
+using namespace std;
 
 class Board {
     vector<Piece*> p;

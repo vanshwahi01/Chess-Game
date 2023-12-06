@@ -16,6 +16,8 @@ class Board {
 };
 */
 
+enum class Colour;
+
 class Piece {
     Coordinate coords;
     Colour colour;
