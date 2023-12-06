@@ -58,8 +58,8 @@ int main() {
         bool gameStarted = false;
         bool didSetUp = false;
         Colour white = Colour::White, black = Colour::Black;
-        Player* p1{white};
-        Player* p2{black};
+        Player* p1 = new Player {white};
+        Player* p2 = new Player {black};
         Computer* cp1 = static_cast<Computer*>(p1);
         Computer* cp2 = static_cast<Computer*>(p2);
         //for checking specs
@@ -143,7 +143,7 @@ int main() {
                                         //checking white King
                                         //Figure out where both Kings are
                                         Coordinate whiteK = whiteKCoord(b), blackK = blackKCoord(b);
-                                        Piece* k = b.getPiece(whiteK);
+                                        King* k = static_cast<King*>(b.getPiece(whiteK));
                                         if (k->isChecked(b)){
 
                                                 cout << "Your white King is in a checked position, please move it somewhere else" << endl;
@@ -165,7 +165,7 @@ int main() {
                                                 b.move(whiteK, getCoordinate(position));
 
                                         }
-                                        Piece* bk = b.getPiece(blackK);
+                                        King* bk = static_cast<King*>(b.getPiece(blackK));
                                         if(bk->isChecked(b)){
                                                 cout << "Your black King is in a checked position, please move it somewhere else" << endl;
                                                 //display the board
@@ -258,8 +258,7 @@ int main() {
                                 cin >> position >> endPosition;
                                 b.move(getCoordinate(position), getCoordinate(endPosition));
                         }
-
-                        Piece pie = b.getPiece(whiteKCoord(b));
+                        King* pie = static_cast<King*>(b.getPiece(whiteKCoord(b)));
                         if(pie.possibleMoves(b, pie, whiteKCoord(b)).empty()){ //whiteK was checkmated
                                 p2->incScore();
                                 cout << "Game over: Black wins";
@@ -268,16 +267,19 @@ int main() {
                                 break;
 
                         }
-                        pie = b.getPiece(blackKCoord(b));
-                        if(pie.possibleMoves(b, pie, blackKCoord(b)).empty()){ //blackK was checkmated
+                        delete pie;
+                        King* pie2 = static_cast<King*>(b.getPiece(whiteKCoord(b)));
+                        if(pie2.possibleMoves(b, pie2, blackKCoord(b)).empty()){ //blackK was checkmated
                                 p1->incScore();
                                 cout << "Game over: White wins";
                                 //display the board
                                 cout << b;
                                 break;
                         }
+                        delete pie2;
 
                         bool isStalemate = false;
+                        //if current player has no possible moves, there's nothing to be done so it's a stalemate
                         for(auto p: b.getPieces()) {
                                  if(p->getColour() != curPlayer) { // opposing player's colour
                                         if(!p->possibleMoves().empty()) {//possible moves of opponent's pieces - if it's not empty you have moves so there's no stalemate
