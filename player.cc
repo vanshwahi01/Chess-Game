@@ -21,7 +21,3 @@ void Player::incScore() {
 void Player::draw(){
     score += 0.5;
 }
-
-int Player::getTotalPieces() {
-        return totalPieces;
-}

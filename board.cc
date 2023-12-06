@@ -29,38 +29,38 @@ bool Board::addPiece(const string type, const Coordinate c, const Colour colour,
         if(type == "K") { //if we're adding a King
             if(b.isOccupied(c)) removePiece(c);
             temp = new King{c, colour, b, "King"};
-            if(colour == Colour::Black) td->notify('k', c);
-            else td->notify('K', c);
+            if(colour == Colour::Black) td->notify('k', c.x, c.y);
+            else td->notify('K', c.x, c.y);
         }
         else if(type == "Q"){ // if we're adding a Queen
             if(b.isOccupied(c)) removePiece(c);
             temp = new Queen{c, colour,b, "Queen"};
-            if(colour == Colour::Black) td->notify('q', c);
-            else td->notify('Q', c);
+            if(colour == Colour::Black) td->notify('q', c.x, c.y);
+            else td->notify('Q', c.x, c.y);
         }
         else if(type == "B") { // if we're adding a Bishop
             if(b.isOccupied(c)) removePiece(c);
             temp = new Bishop{c, colour, b, "Bishop"};
-            if(colour == Colour::Black) td->notify('b', c);
-            else td->notify('B', c);
+            if(colour == Colour::Black) td->notify('b', c.x, c.y);
+            else td->notify('B', c.x, c.y);
         }
         else if(type == "R"){ // if we're adding a Rook
             if(b.isOccupied(c)) removePiece(c);
             temp = new Rook{c, colour,b, "Rook"};
-            if(colour == Colour::Black) td->notify('r', c);
-            else td->notify('R', c);
+            if(colour == Colour::Black) td->notify('r', c.x, c.y);
+            else td->notify('R', c.x, c.y);
         }
         else if(type == "N") { // if we're adding a Knight
             if(b.isOccupied(c)) removePiece(c);
             temp = new Knight{c, colour, b, "Knight"};
-            if(colour == Colour::Black) td->notify('n', c);
-            else td->notify('N', c);
+            if(colour == Colour::Black) td->notify('n', c.x, c.y);
+            else td->notify('N', c.x, c.y);
         }
         else if(type == "P"){  // if we're adding a Pawn
             if(b.isOccupied(c)) removePiece(c);
             temp = new Pawn{c, colour,b, "Pawn"};
-            if(colour == Colour::Black) td->notify('p', c);
-            else td->notify('P', c);
+            if(colour == Colour::Black) td->notify('p', c.x, c.y);
+            else td->notify('P', c.x, c.y);
         }
         else {
             cout << "Please enter valid input." << endl;
@@ -79,11 +79,11 @@ void Board::removePiece(const Coordinate& c) {
     delete board[c.x][c.y];
     board[c.x][c.y] = nullptr;
     if(c.x % 2 == 0) { // Replace the removed piece with the correct tile
-        if(c.y % 2 == 0) td->notify('_', c);
-        else td->notify(' ', c);
+        if(c.y % 2 == 0) td->notify('_', c.x, c.y);
+        else td->notify(' ', c.x, c.y);
     } else {
-        if(c.y % 2 == 0) td->notify(' ', c);
-        else td->notify('_', c);
+        if(c.y % 2 == 0) td->notify(' ', c.x, c.y);
+        else td->notify('_', c.x, c.y);
     }
 }
 

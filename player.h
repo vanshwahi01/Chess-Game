@@ -17,7 +17,6 @@ class Player {
                 int getScore();
                 Colour getColour();
                 void incScore();
-                int getTotalPieces();
                 void draw();
                 
 
