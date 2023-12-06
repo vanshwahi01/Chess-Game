@@ -40,6 +40,9 @@ Coordinate whiteKCoord(Board &b) {
                         return p->getCoords();
                 }
         }
+        Coordinate temp {0,0};
+        return temp;
+
 }
 Coordinate blackKCoord(Board &b) {
         for(auto p :b.getPieces()) {
@@ -47,6 +50,8 @@ Coordinate blackKCoord(Board &b) {
                         return p->getCoords();
                 }
         }
+        Coordinate temp {0,0};
+        return temp;
 }
 
 int main() {
@@ -259,7 +264,8 @@ int main() {
                                 b.move(getCoordinate(position), getCoordinate(endPosition));
                         }
                         King* pie = static_cast<King*>(b.getPiece(whiteKCoord(b)));
-                        if(pie->possibleMoves(b, *pie, whiteKCoord(b)).empty()){ //whiteK was checkmated
+                      //  if(pie->possibleMoves(b, *pie, whiteKCoord(b)).empty()){ //whiteK was checkmated
+                        if(pie->possibleMoves(b, *pie, pie->getCoords()).empty()){
                                 p2->incScore();
                                 cout << "Game over: Black wins";
                                 //display the board
@@ -269,7 +275,8 @@ int main() {
                         }
                         delete pie;
                         King* pie2 = static_cast<King*>(b.getPiece(whiteKCoord(b)));
-                        if(pie2->possibleMoves(b, *pie2, blackKCoord(b)).empty()){ //blackK was checkmated
+                     //   if(pie2->possibleMoves(b, *pie2, blackKCoord(b)).empty()){ //blackK was checkmated
+                        if(pie->possibleMoves(b, *pie2, pie2->getCoords()).empty()){ 
                                 p1->incScore();
                                 cout << "Game over: White wins";
                                 //display the board
