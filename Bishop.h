@@ -11,7 +11,7 @@ class Bishop: public Piece {
 public:
     Bishop(Coordinate c, Colour colour, string type);
     ~Bishop();
-    vector<Coordinate> possibleMoves(const Board& b, const Piece& p, const Coordinate& c) override; // Returns a vector of availble moves
+    vector<Coordinate> possibleMoves(Board& b, Piece& p, Coordinate& c) override; // Returns a vector of availble moves
 };
 
 #endif
