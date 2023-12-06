@@ -15,14 +15,15 @@ class Board {
         Board();
 };
 */
-
+class Coordinate;
+class Board;
 enum class Colour;
 
 class Piece {
     Coordinate coords;
     Colour colour;
     int numMoves;
-    Board curBoard;
+    Board* curBoard;
     string type;
 
 public:
