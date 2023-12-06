@@ -59,10 +59,12 @@ vector<Coordinate> Rook::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     if(c.x - 2 > -1 && !b.isOccupied({c.x - 1, c.y}) && !b.isOccupied({c.x - 2, c.y}) && p.getNumMoves() == 0) { // Check for castling
         for(auto i: b.getPieces()) { // Looking for the correct king
             if(i->getType() == "King" && i->getColour() == p.getColour()) { // Find the correct King
+                King* k = static_cast<King*>(i);
                 Coordinate temp {c.x - 3, c.y};
-                if(i->getNumMoves() == 0 && !i->isChecked(b) && (i->getCoords() == temp)) { // Check if it has moved yet
+                if(k->getNumMoves() == 0 && !k->isChecked(b) && (k->getCoords() == temp)) { // Check if it has moved yet
                     pMoves.push_back({c.x - 2, c.y});
                 }
+                delete k;
                 break; // found king
             }
         }
