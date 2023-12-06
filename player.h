@@ -19,7 +19,6 @@ class Player {
                 void incScore();
                 int getTotalPieces();
                 void draw();
-                virtual ~Player() = 0;
                 
 
 };
