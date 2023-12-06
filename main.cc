@@ -219,6 +219,7 @@ int main() {
 
                         }
                         gameStarted = true;
+                        cout << "Enter your first move white player" << endl;
 
 
                 }//end of game if
@@ -238,9 +239,8 @@ int main() {
                                 if(pLevel == 1){
                                         cp1->randomPiece(b, curPlayer);
 
-                                }
-                                else if (pLevel == 2){
-
+                                } else {
+                                        cout << "Stay tuned for more developments!, levels past 1 aren't available yet, start a new game" << endl;
                                 }
                         }
                         else{// p1 is human
@@ -256,6 +256,8 @@ int main() {
                                         //level 1 move function: get a random index of pieces vector, check if its the right colour, get random index of possible moves vector
 
                                        // b.move(getCoordinate(position), getCoordinate(endPosition));
+                                }else{
+                                        cout << "Stay tuned for more developments!, levels past 1 aren't available yet, start a new game" << endl;
                                 }
                         }
 
