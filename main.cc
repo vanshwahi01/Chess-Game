@@ -143,7 +143,7 @@ int main() {
                                         //checking white King
                                         //Figure out where both Kings are
                                         Coordinate whiteK = whiteKCoord(b), blackK = blackKCoord(b);
-                                        King* k = b.getPiece(whiteK);
+                                        Piece* k = b.getPiece(whiteK);
                                         if (k->isChecked(b)){
 
                                                 cout << "Your white King is in a checked position, please move it somewhere else" << endl;
