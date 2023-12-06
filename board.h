@@ -28,7 +28,7 @@ class Board {
         bool isOccupied(Coordinate c);
         bool addPiece(const string type, const Coordinate c, const Colour colour, Board &b);
         vector<Piece*> getPieces();
-        bool move(const Coordinate& c1, const Coordinate& c2);
+        bool move(const Coordinate& c1, const Coordinate& c2, Board& b);
         Piece *getPiece(const Coordinate& c); // returning pointer to piece check it
         void setUpNormalBoard(); // setting up a basic chess board
         friend std::ostream &operator<<(std::ostream &out, const Board& b);
