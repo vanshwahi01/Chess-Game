@@ -6,13 +6,13 @@ using namespace std;
 
 Pawn::Pawn(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour, b, type} {}
 
-void Pawn::promote(Board& b, Piece& p) { // This is gonna have to be a function in Board or main
-    Coordinate temp = p.getCoords(); // Set aside the pawns coordinates
+// void Pawn::promote(Board& b, Piece& p) { // This is gonna have to be a function in Board or main
+//     Coordinate temp = p.getCoords(); // Set aside the pawns coordinates
 
-    for(auto i: b.getPieces()) {
-        if(i->getCoords() == p.getCoords()) // Look for the pawn
-    }
-}
+//     for(auto i: b.getPieces()) {
+//         if(i->getCoords() == p.getCoords()) // Look for the pawn
+//     }
+// }
 
 vector<Coordinate> Pawn::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     vector<Coordinate> pMoves(0);
