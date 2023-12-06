@@ -3,9 +3,8 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "coordinate.h"
 using namespace std;
-
-class Coordinate;
 
 // constant size of board
 int sizeboard = 8;
