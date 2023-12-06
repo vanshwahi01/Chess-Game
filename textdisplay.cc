@@ -25,26 +25,6 @@ void TextDisplay::notify(char ch, int x, int y) {
     theDisplay[x][y] = ch;
 }
 
-// ostream &operator<<(ostream &out, const TextDisplay &td) {
-//   for (int row=sizeboard-1 ; row>=0 ; row--) {
-//     for (int col=0; col < sizeboard; col++) {
-//       if (td.theDisplay[row][col]==' ') {
-//         if ((row % 2 == 0 && col % 2 == 0) ||(row % 2 !=0 && col % 2 != 0)) {
-//           out << "_";
-//         }
-//         else {
-//           out << " ";
-//         }
-//       }
-//       else {
-//         out << td.theDisplay[row][col];
-//       }
-//     }
-//     out << endl;
-//   }
-//   return out;
-// }
-
 ostream &operator<<(ostream &out, const TextDisplay &td) {
   for (int i = 0; i < 8; i++) {
     for (int j; j < 8; j++) {

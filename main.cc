@@ -204,7 +204,30 @@ int main() {
                         string white_player;
                         string black_player;
                         cin >> white_player >> black_player; //computer[1]
-                        cout << b;
+                        
+                        if(!didSetUp){
+                                for(int i = 0; i < 8; i++) {
+                                        for(int j = 0; j < 8; j++) {
+                                                if(i % 2 == 0) { // Every other row
+                                                        if(j % 2 == 0) { // Every other column
+                                                                cout << '_';
+                                                        } else {
+                                                                cout << ' ';
+                                                        }
+                                                } else {
+                                                        if(j % 2 == 1) {
+                                                                cout << '_';
+                                                        }
+                                                        else {
+                                                                cout << ' ';
+                                                        }
+                                                }
+                                        }
+                                        cout <<endl;
+                                }
+                        } else {
+                                cout << b;
+                        }
                         if(white_player != "human") {
                                 istringstream iss{white_player};
                                 char level;
@@ -220,7 +243,7 @@ int main() {
 
                         }
                         gameStarted = true;
-                        cout << "Enter your first move white player" << endl;
+                        cout << "Enter your first move white-player" << endl;
 
 
                 }//end of game if
@@ -235,13 +258,13 @@ int main() {
                         Computer* temp2 = static_cast<Computer*>(p2);
                         int pLevel = cp1->getLevel();
                         int p2Level = cp2->getLevel();
-                        if(temp){ // if player 1 is a computer i.e. dynamic cast worked
+                        if(temp){ // if player 1 is a computer i.e. static cast worked
 
                                 if(pLevel == 1){
                                         cp1->randomPiece(b, curPlayer);
 
                                 } else {
-                                        cout << "Stay tuned for more developments!, levels past 1 aren't available yet, start a new game" << endl;
+                                    //    cout << "Stay tuned for more developments!, levels past 1 aren't available yet, start a new game" << endl;
                                 }
                         }
                         else{// p1 is human
@@ -258,7 +281,7 @@ int main() {
 
                                        // b.move(getCoordinate(position), getCoordinate(endPosition));
                                 }else{
-                                        cout << "Stay tuned for more developments!, levels past 1 aren't available yet, start a new game" << endl;
+                                     //   cout << "Stay tuned for more developments!, levels past 1 aren't available yet, start a new game" << endl;
                                 }
                         }
 
