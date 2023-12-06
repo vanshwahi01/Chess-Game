@@ -45,6 +45,8 @@ bool Piece::isLegal(const Coordinate& c, Board& b) {
     return false;
 }
 
+vector<Coordinate> Piece::possibleMoves(Board& b, Piece& p, Coordinate& c) {}
+
 void Piece::setCoords(const Coordinate& c) {
     coords = c;
 }
