@@ -94,7 +94,7 @@ vector<Coordinate> King::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     temp.x = c.x + 1;
     Coordinate temp2{c.x + 2, c.y};
     if(c.x + 2 < 8 && !b.isOccupied(temp) && !b.isOccupied(temp2) && p.getNumMoves() == 0) { // Check for castling
-        for(auto i: b.getPiece()s()) { // Looking for the correct king
+        for(auto i: b.getPieces()) { // Looking for the correct king
             if(i->getType == "Rook" && i->getColour() == p.getColour()) { // Find the correct King
                 if(i->getNumMoves() == 0 && i->getCoords() == {c.x + 3, c.y}) { // Check if it has moved yet
                     pMoves.push_back({{c.x + 2, y}});
