@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Rook::Rook(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour, b, type} {}
+Rook::Rook(Coordinate c, Colour colour, string type) : Piece{c, colour, type} {}
 
 vector<Coordinate> Rook::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     vector<Coordinate> pMoves(0);
