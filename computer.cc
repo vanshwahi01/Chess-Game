@@ -35,3 +35,4 @@ void Computer::randomPiece(Board& b, Colour curPlayer){//will this give me an er
         
         b.move(temp[randomIndex]->getCoords() , pMoves[possMovesIndex], b);
 }
+
