@@ -12,7 +12,6 @@ class Player {
         protected:
                 Colour colour = Colour::White;
                 int score = 0;
-                int totalPieces = 0;
         public:
                 Player(Colour c);
                 int getScore();
@@ -20,6 +19,7 @@ class Player {
                 void incScore();
                 int getTotalPieces();
                 void draw();
+                virtual ~Player() = 0;
                 
 
 };

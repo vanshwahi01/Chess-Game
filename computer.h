@@ -5,14 +5,12 @@ using namespace std;
 
 class Computer : public Player {
         int level = 1;
-        int totalPieces = 0;
         
         public:
-                Computer();
+                Computer(Colour colour);
                 int getLevel();
                 void setLevel(int lev);
-                Piece randomPiece(const Board &b); //returns a random piece
-                void incTotalPieces();
+                Piece* randomPiece(Board b); //returns a random piece
                 //get a random index
                 //the piece at that random index will be the piece that is chosen to be played
 

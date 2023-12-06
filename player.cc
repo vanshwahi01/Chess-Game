@@ -25,3 +25,5 @@ void Player::draw(){
 int Player::getTotalPieces() {
         return totalPieces;
 }
+
+Player::~Player(){}
