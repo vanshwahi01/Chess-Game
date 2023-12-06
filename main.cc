@@ -292,7 +292,7 @@ int main() {
                         for(auto p: b.getPieces()) {
                                  if(p->getColour() != curPlayer) { // opposing player's colour
                                         Coordinate tempP = p->getCoords();
-                                        if(!p->possibleMoves(b, *p, tempP.empty())) {//possible moves of opponent's pieces - if it's not empty you have moves so there's no stalemate
+                                        if(!p->possibleMoves(b, *p, tempP).empty()) {//possible moves of opponent's pieces - if it's not empty you have moves so there's no stalemate
                                                 isStalemate = false;
                                                 break;
                                         }
