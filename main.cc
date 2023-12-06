@@ -1,7 +1,7 @@
 #include "board.h"
 #include "player.h"
 #include "computer.h"
-
+#include "King.h"
 #include <iostream>
 #include <vector>
 #include <string>
