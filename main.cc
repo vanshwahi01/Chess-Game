@@ -140,28 +140,6 @@ int main() {
 
                                         }
 
-                                        //there's shouldn't be more than 1 of each King after setup command
-
-
-                                        // DO I EVEN NEED THIS CHECK IF I DONT ADD PAWNS ON THE FIRST AND LAST ROW ANYWAYS
-
-                                        //checking no pawns on first and last rows
-                                        // for(int j = 0; j < 8 ; i++) {
-                                        // Coordinate d{0, j};
-                                        //         ifb.getPiece(d)->getType() == "Pawn") { //the piece is a pawn
-                                        //                 b.removePiece(d); //they move it
-                                        //                 cout << "Pawn from the first row was removed" << endl;
-                                        //         }
-                                        //         d.x = 7;
-                                        //         //checking last row
-                                        //         ifb.getPiece(d)->getType() == "Pawn") { //the piece is a pawn
-                                        //                 b.removePiece(d); // they move it
-                                        //                 cout << "Pawn from the last row was removed" << endl;
-                                        //         }
-                                        // }
-                                        //checking that king isn't in a checked posiiton
-                                        //iterate through every piece on opposing side, call possible moves on those piece, check if any of those coordinates match King's coordinates'
-
                                         //checking white King
                                         //Figure out where both Kings are
                                         Coordinate whiteK = whiteKCoord(b), blackK = blackKCoord(b);
