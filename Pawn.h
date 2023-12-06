@@ -12,7 +12,7 @@ public:
     Pawn(Coordinate c, Colour colour, string type);
 
     //void promote(Board& b, Piece& p);
-
+    ~Pawn();
     vector<Coordinate> possibleMoves(Board& b, Piece& p, Coordinate& c) override; // Returns a vector of availble moves
 };
 
