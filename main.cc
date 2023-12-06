@@ -57,9 +57,9 @@ int main() {
         string command;
         bool gameStarted = false;
         bool didSetUp = false;
-
-        Player* p1{Colour::White};
-        Player* p2{Colour::Black};
+        Colour white = Colour::White, black = Colour::Black;
+        Player* p1{white};
+        Player* p2{black};
         Computer* cp1 = static_cast<Computer*>(p1);
         Computer* cp2 = static_cast<Computer*>(p2);
         //for checking specs
