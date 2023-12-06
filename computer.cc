@@ -29,7 +29,7 @@ Piece* Computer::randomPiece(Board b, Colour curPlayer){//will this give me an e
         }
             
         //get random index from possible moves
-        vector<Coordinate> pMoves = possibleMoves(b, temp[randomIndex], temp[randomIndex]->getCoords());
+        vector<Coordinate> pMoves = temp[randomIndex]->possibleMoves(b, temp[randomIndex], temp[randomIndex]->getCoords());
         int numPossMoves = temp[randomIndex]->pMoves.size();
         int possMovesIndex = rand() % numPossMoves;
         
