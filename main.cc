@@ -167,7 +167,7 @@ int main() {
                                                         cin >> position;
                                                 }
 
-                                                b.move(whiteK, getCoordinate(position));
+                                                b.move(whiteK, getCoordinate(position), b);
 
                                         }
                                         King* bk = static_cast<King*>(b.getPiece(blackK));
@@ -184,7 +184,7 @@ int main() {
                                                         cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
                                                         cin >> position;
                                                 }
-                                                b.move(whiteK, getCoordinate(position));
+                                                b.move(whiteK, getCoordinate(position), b);
                                         }
 
                                         break;
@@ -245,7 +245,7 @@ int main() {
                         }
                         else{// p1 is human
                                 cin >> position >> endPosition;
-                                b.move(getCoordinate(position), getCoordinate(endPosition));
+                                b.move(getCoordinate(position), getCoordinate(endPosition), b);
 
                         }
                         //black goes
@@ -261,7 +261,7 @@ int main() {
 
                         else{//p2 is a human
                                 cin >> position >> endPosition;
-                                b.move(getCoordinate(position), getCoordinate(endPosition));
+                                b.move(getCoordinate(position), getCoordinate(endPosition), b);
                         }
                         King* pie = static_cast<King*>(b.getPiece(whiteKCoord(b)));
                       //  if(pie->possibleMoves(b, *pie, whiteKCoord(b)).empty()){ //whiteK was checkmated
