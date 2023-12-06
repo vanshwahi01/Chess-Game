@@ -265,7 +265,8 @@ int main() {
                         }
                         King* pie = static_cast<King*>(b.getPiece(whiteKCoord(b)));
                       //  if(pie->possibleMoves(b, *pie, whiteKCoord(b)).empty()){ //whiteK was checkmated
-                        if(pie->possibleMoves(b, *pie, pie->getCoords()).empty()){
+                        Coordinate pieC = pie->getCoords();
+                        if(pie->possibleMoves(b, *pie, pieC).empty()){
                                 p2->incScore();
                                 cout << "Game over: Black wins";
                                 //display the board
@@ -276,7 +277,8 @@ int main() {
                         delete pie;
                         King* pie2 = static_cast<King*>(b.getPiece(whiteKCoord(b)));
                      //   if(pie2->possibleMoves(b, *pie2, blackKCoord(b)).empty()){ //blackK was checkmated
-                        if(pie->possibleMoves(b, *pie2, pie2->getCoords()).empty()){ 
+                        Coordinate pie2C = pie2->getCoords();
+                        if(pie->possibleMoves(b, *pie2, pie2C).empty()){ 
                                 p1->incScore();
                                 cout << "Game over: White wins";
                                 //display the board
