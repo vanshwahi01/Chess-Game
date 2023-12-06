@@ -9,8 +9,6 @@ using namespace std;
 // constant size of board
 int sizeboard = 8;
 
-class Coordinate;
-
 class TextDisplay {
     vector<vector<char>> theDisplay;
     public:
