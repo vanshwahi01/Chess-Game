@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Queen::Queen(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour, b, type} {}
+Queen::Queen(Coordinate c, Colour colour, string type) : Piece{c, colour, type} {}
 
 vector<Coordinate> Queen::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     vector<Coordinate> pMoves(0);
