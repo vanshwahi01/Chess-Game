@@ -291,7 +291,8 @@ int main() {
                         //if current player has no possible moves, there's nothing to be done so it's a stalemate
                         for(auto p: b.getPieces()) {
                                  if(p->getColour() != curPlayer) { // opposing player's colour
-                                        if(!p->possibleMoves(b, *p, p->getCoords()).empty()) {//possible moves of opponent's pieces - if it's not empty you have moves so there's no stalemate
+                                        Coordinate tempP = p->getCoords();
+                                        if(!p->possibleMoves(b, *p, tempP.empty())) {//possible moves of opponent's pieces - if it's not empty you have moves so there's no stalemate
                                                 isStalemate = false;
                                                 break;
                                         }
