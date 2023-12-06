@@ -13,7 +13,7 @@ void Computer::setLevel(int lev){
     level = lev;
 }
 
-Piece* Computer::randomPiece(Board b){//will this give me an error saying totalPieces is not declared in this scope? It technically comes with it because it's a player... but idk
+Piece* Computer::randomPiece(Board b, Colour curPlayer){//will this give me an error saying totalPieces is not declared in this scope? It technically comes with it because it's a player... but idk
         // srand((unsigned int)time(NULL));
         // int randomIndex = rand() % totalPieces;//gives us a random index from 0 to whatever the total number of pieces is;
         // return randomIndex;

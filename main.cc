@@ -231,7 +231,7 @@ int main() {
                         if(temp){ // if player 1 is a computer i.e. dynamic cast worked
 
                                 if(pLevel == 1){
-                                        cp1->randomPiece(b);
+                                        cp1->randomPiece(b, curPlayer);
 
                                 }
                                 else if (pLevel == 2){
@@ -247,7 +247,7 @@ int main() {
 
                         if(temp2){
                                 if(p2Level == 1){
-                                        cp2->randomPiece(b);
+                                        cp2->randomPiece(b, curPlayer);
                                         //level 1 move function: get a random index of pieces vector, check if its the right colour, get random index of possible moves vector
 
                                        // b.move(getCoordinate(position), getCoordinate(endPosition));

@@ -10,7 +10,7 @@ class Computer : public Player {
                 Computer(Colour colour);
                 int getLevel();
                 void setLevel(int lev);
-                Piece* randomPiece(Board b); //returns a random piece
+                Piece* randomPiece(Board b, Colour curPlayer); //returns a random piece
                 //get a random index
                 //the piece at that random index will be the piece that is chosen to be played
 
