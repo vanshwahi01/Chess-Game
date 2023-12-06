@@ -100,7 +100,7 @@ bool Board::move(const Coordinate& c1, const Coordinate& c2) { // c1 is start, c
 
     Piece* temp = getPiece(c1);
 
-    if(temp->isLegal(c2)) {
+    if(temp->isLegal(c2, b)) {
         temp->setCoords(c2);
         board[c2.x][c2.y] = temp;
         board[c1.x][c1.y] = nullptr;

@@ -23,11 +23,10 @@ class Piece {
     Coordinate coords;
     Colour colour;
     int numMoves;
-    Board* curBoard;
     string type;
 
 public:
-    Piece(Coordinate c, Colour colour2, Board& b, string type);
+    Piece(Coordinate c, Colour colour2, string type);
 
     virtual vector<Coordinate> possibleMoves(Board& b, Piece& p, Coordinate& c); // Returns a vector of availble moves
 

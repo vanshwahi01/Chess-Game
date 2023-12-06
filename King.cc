@@ -3,7 +3,7 @@
 
 using namespace std;
 
-King::King(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour, b, type} {}
+King::King(Coordinate c, Colour colour, string type) : Piece{c, colour, type} {}
 
 bool King::isChecked(Board& b) {
     for(auto p : b.getPieces()) { // Iterate through all the pieces on the board

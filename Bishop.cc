@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Bishop::Bishop(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour, b, type} {}
+Bishop::Bishop(Coordinate c, Colour colour, string type) : Piece{c, colour, type} {}
 
 vector<Coordinate> Bishop::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     vector<Coordinate> pMoves(0);
