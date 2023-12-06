@@ -40,7 +40,7 @@ public:
 
     string getType();
 
-    bool isLegal(const Coordinate& c); // Checks if a move is legal
+    bool isLegal(const Coordinate& c, Board& b); // Checks if a move is legal
 
     virtual ~Piece() = 0;
 };
