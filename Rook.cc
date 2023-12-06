@@ -1,9 +1,12 @@
 #include <vector>
 #include "Rook.h"
+#include "King.h"
 
 using namespace std;
 
 Rook::Rook(Coordinate c, Colour colour, string type) : Piece{c, colour, type} {}
+
+Rook::~Rook() {}
 
 vector<Coordinate> Rook::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     vector<Coordinate> pMoves(0);

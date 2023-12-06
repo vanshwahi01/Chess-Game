@@ -159,7 +159,7 @@ int main() {
                                                 cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
                                                 cin >> position;
 
-                                                while(b.getPiece(whiteK)->isLegal(getCoordinate(position))) {
+                                                while(b.getPiece(whiteK)->isLegal(getCoordinate(position), b)) {
                                                         cout << "Your white King is in a checked position, please move it somewhere else" << endl;
                                                         //display the board
                                                         cout <<b;
@@ -177,7 +177,7 @@ int main() {
                                                 cout << b;
                                                 cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
                                                 cin >> position;
-                                                while(b.getPiece(blackK)->isLegal(getCoordinate(position))) {
+                                                while(b.getPiece(blackK)->isLegal(getCoordinate(position), b)) {
                                                         cout << "Your black King is in a checked position, please move it somewhere else" << endl;
                                                         //display the board
                                                         cout << b;

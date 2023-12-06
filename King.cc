@@ -5,6 +5,8 @@ using namespace std;
 
 King::King(Coordinate c, Colour colour, string type) : Piece{c, colour, type} {}
 
+King::~King() {}
+
 bool King::isChecked(Board& b) {
     for(auto p : b.getPieces()) { // Iterate through all the pieces on the board
         Coordinate temp4 = p->getCoords();

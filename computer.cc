@@ -30,8 +30,8 @@ void Computer::randomPiece(Board& b, Colour curPlayer){//will this give me an er
         Coordinate tempCoords = temp[randomIndex]->getCoords();
         //get random index from possible moves
         vector<Coordinate> pMoves = temp[randomIndex]->possibleMoves(b, *temp[randomIndex], tempCoords);
-        int numPossMoves = pMoves().size();
+        int numPossMoves = pMoves.size();
         int possMovesIndex = rand() % numPossMoves;
         
-        b.move(temp[randomIndex]->getCoords() , pMoves[possMovesIndex]);
+        b.move(temp[randomIndex]->getCoords() , pMoves[possMovesIndex], b);
 }

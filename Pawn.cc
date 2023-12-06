@@ -6,6 +6,8 @@ using namespace std;
 
 Pawn::Pawn(Coordinate c, Colour colour, string type) : Piece{c, colour, type} {}
 
+Pawn::~Pawn() {}
+
 // void Pawn::promote(Board& b, Piece& p) { // This is gonna have to be a function in Board or main
 //     Coordinate temp = p.getCoords(); // Set aside the pawns coordinates
 

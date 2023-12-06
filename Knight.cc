@@ -5,6 +5,8 @@ using namespace std;
 
 Knight::Knight(Coordinate c, Colour colour, string type) : Piece{c, colour, type} {}
 
+Knight::~Knight() {}
+
 vector<Coordinate> Knight::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     vector<Coordinate> pMoves(0);
 

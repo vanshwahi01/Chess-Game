@@ -6,6 +6,8 @@ using namespace std;
 
 Queen::Queen(Coordinate c, Colour colour, string type) : Piece{c, colour, type} {}
 
+Queen::~Queen() {}
+
 vector<Coordinate> Queen::possibleMoves(Board& b, Piece& p, Coordinate& c) {
     vector<Coordinate> pMoves(0);
 
