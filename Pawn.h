@@ -9,7 +9,7 @@ using namespace std;
 
 class Pawn: public Piece {
 public:
-    Pawn(Coordinate c, Colour colour, Board b, string type);
+    Pawn(Coordinate c, Colour colour, string type);
 
     //void promote(Board& b, Piece& p);
 
