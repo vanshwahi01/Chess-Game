@@ -165,7 +165,7 @@ int main() {
                                                 b.move(whiteK, getCoordinate(position));
 
                                         }
-                                        King* bk = b.getPiece(blackK);
+                                        Piece* bk = b.getPiece(blackK);
                                         if(bk->isChecked(b)){
                                                 cout << "Your black King is in a checked position, please move it somewhere else" << endl;
                                                 //display the board
