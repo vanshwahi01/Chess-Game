@@ -7,7 +7,8 @@ King::King(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour,
 
 bool King::isChecked(Board& b) {
     for(auto p : b.getPieces()) { // Iterate through all the pieces on the board
-        for(auto i : p->possibleMoves(b, *p, p->getCoords())) { // Iterate through the possible moves of i
+        Coordinate temp4 = p->getCoords();
+        for(auto i : p->possibleMoves(b, *p, temp4)) { // Iterate through the possible moves of i
             if(i == this->getCoords()) { // checking if king is in checked position
                     return true;
             }
@@ -18,7 +19,8 @@ bool King::isChecked(Board& b) {
 
 bool King::willBeChecked(Board& b, const Coordinate& c) {
     for(auto p : b.getPieces()) { // Iterate through all the pieces on the board
-        for(auto i : p->possibleMoves(b, *p, p->getCoords())) { // Iterate through the possible moves of i
+        Coordinate temp5 = p->getCoords();
+        for(auto i : p->possibleMoves(b, *p, temp5)) { // Iterate through the possible moves of i
             if(i == c) { // checking if king is in checked position
                     return true;
             }
