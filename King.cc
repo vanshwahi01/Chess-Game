@@ -5,9 +5,9 @@ using namespace std;
 
 King::King(Coordinate c, Colour colour, Board b, string type) : Piece{c, colour, b, type} {}
 
-bool King::isChecked(const Board& b) {
+bool King::isChecked(Board& b) {
     for(auto p : b.getPieces()) { // Iterate through all the pieces on the board
-        for(auto i : p->possibleMoves(b, p, p->getCoords())) { // Iterate through the possible moves of i
+        for(auto i : p->possibleMoves(b, *p, p->getCoords())) { // Iterate through the possible moves of i
             if(i == this->getCoords()) { // checking if king is in checked position
                     return true;
             }
@@ -16,7 +16,7 @@ bool King::isChecked(const Board& b) {
     return false;
 }
 
-bool King::willBeChecked(const Board& b, const Coordinate& c) {
+bool King::willBeChecked(Board& b, const Coordinate& c) {
     for(auto p : b.getPieces()) { // Iterate through all the pieces on the board
         for(auto i : p->possibleMoves(b, *p, p->getCoords())) { // Iterate through the possible moves of i
             if(i == c) { // checking if king is in checked position
@@ -96,7 +96,7 @@ vector<Coordinate> King::possibleMoves(Board& b, Piece& p, Coordinate& c) {
 
     if(c.x + 2 < 8 && !b.isOccupied(temp) && !b.isOccupied(temp2) && p.getNumMoves() == 0) { // Check for castling
         for(auto i: b.getPieces()) { // Looking for the correct king
-            if(i->getType == "Rook" && i->getColour() == p.getColour()) { // Find the correct King
+            if(i->getType() == "Rook" && i->getColour() == p.getColour()) { // Find the correct King
                 if(i->getNumMoves() == 0 && i->getCoords() == temp3) { // Check if it has moved yet
                     pMoves.push_back({temp2});
                 }

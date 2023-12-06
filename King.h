@@ -13,9 +13,9 @@ public:
 
     vector<Coordinate> possibleMoves(Board& b, Piece& p, Coordinate& c) override; // Returns a vector of availble moves
 
-    bool isChecked(const Board& b);
+    bool isChecked(Board& b);
 
-    bool willBeChecked(const Board& b, const Coordinate& c);
+    bool willBeChecked(Board& b, const Coordinate& c);
 };
 
 #endif
