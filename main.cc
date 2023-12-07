@@ -22,10 +22,10 @@ Coordinate getCoordinate(string c){
                 case 'b': coord.x = 1; break;
                 case 'c': coord.x = 2; break;
                 case 'd': coord.x = 3; break;
-                case 'e': coord.x = 4; break;
-                case 'f': coord.x = 5; break;
-                case 'g': coord.x = 6; break;
-                case 'h': coord.x = 7; break;
+                case 'e': coord.x = 4; break; 
+                case 'f': coord.x = 5; break; 
+                case 'g': coord.x = 6; break; 
+                case 'h': coord.x = 7; break; 
         }
         int y;
         iss >> y;
@@ -72,7 +72,7 @@ int main() {
         string position;
         string endPosition;
         while(cin >> command) {
-                if(command == "setup") { //set up
+                if(command == "setup") { // set up
                      didSetUp = true;
 
                         string action;
@@ -126,8 +126,10 @@ int main() {
                                              //   King temp {c, Colour::White, *b, "King"};
                                                 if((getCoordinate(position).x < 0) || (getCoordinate(position).x > 7)|| (getCoordinate(position).y > 0)|| (getCoordinate(position).y > 7)){//temp.isLegal(getCoordiante(position))){
                                                         b.addPiece("K", getCoordinate(position), Colour::White, b);
+                                                        numWhiteK++;
                                                 } else{
                                                         cout << "That isn't a legal position for the King, please provide an alternate position" << endl;
+                                                        continue;
                                                 }
 
                                         }
@@ -139,6 +141,7 @@ int main() {
                                                // King temp {c, Colour::Black, *b, "King"};
                                                 if((getCoordinate(position).x < 0) || (getCoordinate(position).x > 7)|| (getCoordinate(position).y > 0)|| (getCoordinate(position).y > 7)){//temp.isLegal(getCoordiante(position))){
                                                         b.addPiece("K", getCoordinate(position), Colour::Black, b);
+                                                        numBlackK++;
                                                 } else{
                                                         cout << "That isn't a legal position for the King, please provide an alternate position" << endl;
                                                 }
@@ -159,7 +162,7 @@ int main() {
                                                 cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
                                                 cin >> position;
 
-                                                while(b.getPiece(whiteK)->isLegal(getCoordinate(position), b)) {
+                                                while(!(b.getPiece(whiteK)->isLegal(getCoordinate(position), b))) {
                                                         cout << "Your white King is in a checked position, please move it somewhere else" << endl;
                                                         //display the board
                                                         cout <<b;
@@ -177,7 +180,7 @@ int main() {
                                                 cout << b;
                                                 cout << "Please provide new coordinates for the King (ex. 'a1')" << endl;
                                                 cin >> position;
-                                                while(b.getPiece(blackK)->isLegal(getCoordinate(position), b)) {
+                                                while(!(b.getPiece(blackK)->isLegal(getCoordinate(position), b))) {
                                                         cout << "Your black King is in a checked position, please move it somewhere else" << endl;
                                                         //display the board
                                                         cout << b;
@@ -186,12 +189,12 @@ int main() {
                                                 }
                                                 b.move(whiteK, getCoordinate(position), b);
                                         }
-
                                         break;
                                 } //end of if done
                                 else{
                                         cout << "You didn't provide a valid command, please start your command with +, -, or =" << endl;
                                         cout << "enter 'done' if you're done with set up" << endl;
+                                        break;
                                 }
 
                         }
@@ -240,19 +243,17 @@ int main() {
                                 char level;
                                 for(int i = 0; i < 10; i++){iss >> level;}
                                 cp2->setLevel(level - '0');
-
                         }
                         gameStarted = true;
                         cout << "Enter your first move white-player" << endl;
-
-
-                }//end of game if
+                }//end of game if 
 
                 else if(command == "resign") {
                         if(curPlayer == Colour::White) p2->incScore();
                         else p1->incScore();
                         cout << "----- Game finished -------" << endl;
                 }
+
                 else if (command == "move"){
                         Computer* temp = static_cast<Computer*>(p1);
                         Computer* temp2 = static_cast<Computer*>(p2);
@@ -285,24 +286,23 @@ int main() {
                                 }
                         }
 
-                        else{//p2 is a human
+                        else {//p2 is a human
                                 cin >> position >> endPosition;
                                 b.move(getCoordinate(position), getCoordinate(endPosition), b);
                         }
                         King* pie = static_cast<King*>(b.getPiece(whiteKCoord(b)));
-                      //  if(pie->possibleMoves(b, *pie, whiteKCoord(b)).empty()){ //whiteK was checkmated
+                        //  if(pie->possibleMoves(b, *pie, whiteKCoord(b)).empty()){ //whiteK was checkmated
                         Coordinate pieC = pie->getCoords();
-                        if(pie->possibleMoves(b, *pie, pieC).empty()){
+                        if(pie->possibleMoves(b, *pie, pieC).empty()) {
                                 p2->incScore();
                                 cout << "Game over: Black wins";
                                 //display the board
                                 cout << b;
                                 break;
-
                         }
                         delete pie;
                         King* pie2 = static_cast<King*>(b.getPiece(whiteKCoord(b)));
-                     //   if(pie2->possibleMoves(b, *pie2, blackKCoord(b)).empty()){ //blackK was checkmated
+                        //   if(pie2->possibleMoves(b, *pie2, blackKCoord(b)).empty()){ //blackK was checkmated
                         Coordinate pie2C = pie2->getCoords();
                         if(pie->possibleMoves(b, *pie2, pie2C).empty()){ 
                                 p1->incScore();
@@ -312,7 +312,6 @@ int main() {
                                 break;
                         }
                         delete pie2;
-
                         bool isStalemate = false;
                         //if current player has no possible moves, there's nothing to be done so it's a stalemate
                         for(auto p: b.getPieces()) {
@@ -330,14 +329,15 @@ int main() {
                                 p2->draw();
                                 break;
                         }
+
                         if(curPlayer == Colour::White){
                                 curPlayer = Colour::Black;
-                        } else curPlayer = Colour::White;
+                        } 
+                        else curPlayer = Colour::White;
 
                         delete temp;
                         delete temp2;
-                }
-                 else {
+                } else {
                         //possible typo
                         cout << "You didn't output a valid command!" << endl;
                         cout << "You said: " << command << endl;
@@ -354,3 +354,5 @@ int main() {
         delete cp2;
         return 0;
 }//end of main
+
+
